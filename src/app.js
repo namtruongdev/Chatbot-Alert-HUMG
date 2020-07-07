@@ -5,7 +5,7 @@ import initWebRoute from './routes/web';
 import cron from './controllers/cronController';
 
 const app = express();
-const port = process.env.PORT_LOCAL || PORT;
+const port = process.env.PORT_LOCAL || process.env.PORT;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

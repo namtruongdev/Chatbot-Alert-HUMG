@@ -46,7 +46,9 @@ class Humg {
     return weekDay[d.getDay()];
   }
   async getSchedule(msv, name, id) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const page = await browser.newPage();
     await page.goto(
       `https://daotao.humg.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id=${msv}`
