@@ -1,38 +1,32 @@
-import low from 'lowdb';
-import FileAsync from 'lowdb/adapters/FileAsync';
-
-const adapter = new FileAsync('db.json');
+import User from '../models/users';
 
 class DB {
   constructor() {}
-  async write(data) {
-    const db = await low(adapter);
-    await db.defaults({ users: [] }).write();
-    await db.get('users').push(data).write();
+
+  async checkExistUser(uid) {
+    return await User.findOne({ uid: uid }).lean();
   }
-  async updateMsv(id, msv) {
-    const db = await low(adapter);
-    return await db.get('users').find({ id: id }).assign({ msv: msv }).write();
+
+  async updateMsv(uid, msv) {
+    return await User.updateOne({ uid: uid }, { msv: msv }, (err) => {
+      if (err) {
+        console.log(`Update lỗi: ${err}`);
+      } else {
+        console.log(`${uid} đã update thành công mã sinh viên của mình`);
+      }
+    });
   }
-  async checkData(id) {
-    const db = await low(adapter);
-    return await db.get('users').find({ id: id }).value();
-  }
-  async addSub(id) {
-    const db = await low(adapter);
-    return await db.get('users').find({ id: id }).assign({ sub: 1 }).write();
-  }
-  async removeSub(id) {
-    const db = await low(adapter);
-    return await db.get('users').find({ id: id }).assign({ sub: 0 }).write();
-  }
-  async getMsv(id) {
-    const db = await low(adapter);
-    return await db.get('users').find({ id: id }).value().msv;
+  async updateSub(uid, sub) {
+    return await User.updateOne({ uid: uid }, { sub: sub }, (err) => {
+      if (err) {
+        console.log(`Lỗi cập nhật trạng thái nhận tin: ${err}`);
+      } else {
+        console.log(`${uid} đã cập nhật trạng thái nhận tin thành công`);
+      }
+    });
   }
   async getSub() {
-    const db = await low(adapter);
-    return await db.get('users').filter({ sub: 1 }).value();
+    return await User.find({ sub: 1 }).lean();
   }
 }
 

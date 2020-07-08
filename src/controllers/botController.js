@@ -2,6 +2,8 @@ require('dotenv').config();
 import fbAPI from '../api/facebookAPI';
 import humgAPI from '../api/humgAPI';
 import DB from '../controllers/dbController';
+import User from '../models/users';
+import text from '../constants';
 
 class Bot {
   constructor() {}
@@ -15,279 +17,194 @@ class Bot {
     const index = Math.floor(Math.random() * arr.length);
     return arr[index];
   }
-  async handleMessage(sender_psid, message) {
-    const senderName = await fbAPI.getSenderName(sender_psid);
+  async handleMessage(uid, message) {
+    const name = await fbAPI.getSenderName(uid);
+    const gender = await fbAPI.getGender(uid);
+    const mess = new text(name, gender);
     const entities = this.firstEntity(message.nlp);
     const intent = this.getIntent(message.nlp);
-    const chaoHoi = [
-      `Hê hê, baaaaaby 😘`,
-      `Chào ${senderName}, em tên là Hấu 🍉`,
-      `Xin chào, ${senderName} cần Hấu 🍉 giúp gì nào?`,
-      `Hế nhô ${senderName} kute phô mai que 🧀`,
-      `Ơn giời ${senderName} đây rồi 😂`,
-      `Ngoài kia gió thổi rì rào...Đầu tiên xin gửi lời chào thân thương 👋`,
-      `Bữa nay Hấu 🍉 gửi lời chào. Cùng nhau tương tác ta càng thêm thân ❤`,
-      `Konnichiwa ${senderName} 😊`,
-    ];
-    const notrain = [
-      `Xin lỗi ${senderName} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được Boss Trường dạy nhiều nên không biết trả lời câu này như nào 😥`,
-      'Câu này hình như em chưa được dạy. Ahihi 😁',
-      `Ui chu choa ${senderName} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
-    ];
 
-    const danglaytkb = [
-      `Chờ Hấu 🍉 xíu nha... Hấu 🍉 đang lấy dữ liệu về cho ${senderName} 😋`,
-      `Hấu 🍉 đang lấy dữ liệu vừa nóng vừa thổi về cho ${senderName} nè. Chờ xíu nhen...`,
-    ];
-
-    const thaydoimsv = [
-      `❗ Chú ý: ${senderName} vừa thay đổi mã sinh viên của mình.`,
-    ];
-
-    const xemtkb = [`Đưa mã sinh viên của ${senderName} cho Hấu 🍉 nào?`];
-    const daluumsv = [
-      `🍉 đã nhớ Mã sinh viên của ${senderName} rồi nha. Ahihi, yên tâm 🍉 sẽ không bao giờ quên được đâu. Lúc nào ${senderName} cần xem lịch học thì cứ nhắn cho 🍉 biết nhé`,
-    ];
-
-    const sub = [
-      `Cảm ơn ${senderName} đã tin tưởng 🍉. Từ giờ trở đi, mỗi sáng thức dậy 🍉 sẽ là người đầu tiên nhắn tin cho ${senderName}`,
-    ];
-    const huyDangKyRoiMa = [
-      `${senderName} đã hủy đăng ký rồi mà, hủy gì mà hủy lắm vậy. ${senderName} hết thương 🍉 rồi à?`,
-    ];
-    const removeSub = [
-      `Hủy thành công! Khi nào nhớ 🍉 thì hãy đăng ký nhận tin lại nha 😭`,
-    ];
-    const notInfo = [
-      `${senderName} vui lòng cung cấp Mã sinh viên cho 🍉 trước khi muốn đăng ký nhận tin hàng ngày nhé`,
-    ];
-    const daHuyDangKyRoi = [
-      `Xì... ${senderName} đã bao giờ đăng ký nhận tin đâu mà cứ đòi hủy vậy? Ghét 🍉 đến thế à 🙄`,
-    ];
-    const dadangkyroi = [
-      `${senderName} đã đăng ký nhận tin trước đó rồi mà. Nếu ý của ${senderName} là muốn hủy đăng ký nhận tin thì ${senderName} có thể chat hoặc chọn "Hủy đăng ký" từ menu rồi gửi lại cho 🍉 nhé... Nhưng mà 🍉 sẽ buồn lắm khi ${senderName} làm vậy 😥`,
-    ];
-    const hauAnDuocKhong = [
-      `Huhu... 🍉 là để yêu thương nhé ${senderName}, không có ăn được đâu 💔`,
-    ];
-    const hauCoTheLamGi = [
-      `🍉 là một robot xinh gái siêu cấp vô địch được Boss Dương Nam Trường tạo ra vào ngày 08/07/2020 với nhiệm vụ nhắc nhở lịch học cho các anh em HUMGer và cũng có thể tâm sự với anh em nếu cần 😘`,
-    ];
-
-    const dataOfCheckId = await DB.checkData(sender_psid);
+    const existUser = await DB.checkExistUser(uid);
 
     if (intent && intent.confidence > 0.8) {
-      await fbAPI.sendMarkSeen(sender_psid);
-      await fbAPI.sendTyping(sender_psid);
+      await fbAPI.sendMarkSeen(uid);
+      await fbAPI.sendTyping(uid);
       switch (intent.name) {
         case 'chaohoi':
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(chaoHoi));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.chaoHoi));
           break;
         case 'msv':
           const msv = entities['msv:msv'][0].value;
-          if (dataOfCheckId) {
-            const idStudent = dataOfCheckId.msv;
+          if (existUser) {
+            const idStudent = existUser.msv;
             if (idStudent !== msv) {
-              await DB.updateMsv(sender_psid, msv);
-              await fbAPI.callSendAPI(sender_psid, this.randomStr(thaydoimsv));
+              await DB.updateMsv(uid, msv);
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.thaydoimsv));
             } else {
-              await fbAPI.callSendAPI(
-                sender_psid,
-                `Lần trước ${senderName} có nói cho 🍉 mã sinh viên của ${senderName} là ${idStudent} rồi mà 🤣`
-              );
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.daTungNoiMsv));
             }
           } else {
-            await fbAPI.callSendAPI(sender_psid, this.randomStr(daluumsv));
-            await DB.write({
-              id: sender_psid,
-              firstName: senderName,
+            const data = await new User({
+              uid: uid,
+              firstName: name,
               msv: msv,
+              sub: 0,
             });
+            data.save((err) => {
+              if (err) {
+                console.log(`Lỗi: ${err}`);
+              } else {
+                console.log(
+                  `OK. Thêm dữ liệu thành công cho sinh viên tên là ${name}`
+                );
+              }
+            });
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.daluumsv));
           }
           break;
         case 'xemtkb':
-          if (dataOfCheckId) {
-            const msv = await DB.getMsv(sender_psid);
-            const tkb = await humgAPI.getSchedule(msv, senderName, sender_psid);
-            await fbAPI.callSendAPI(sender_psid, this.randomStr(danglaytkb));
+          if (existUser) {
+            const msv = existUser.msv;
+            const tkb = await humgAPI.getSchedule(msv, name, uid);
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             if (tkb.length > 72) {
               await fbAPI.callSendAPI(
-                sender_psid,
-                `Hôm nay ${humgAPI.getFullDate()}, ${senderName} phải học:`
+                uid,
+                `Hôm nay ${humgAPI.getFullDate()}, ${name} phải học:`
               );
-              await fbAPI.callSendAPI(sender_psid, tkb);
+              await fbAPI.callSendAPI(uid, tkb);
               await fbAPI.callSendAPI(
-                sender_psid,
-                `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${senderName} 3000 ❤`
+                uid,
+                `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${name} 3000 ❤`
               );
             } else {
-              await fbAPI.callSendAPI(sender_psid, tkb);
+              await fbAPI.callSendAPI(uid, tkb);
             }
           } else {
-            await fbAPI.callSendAPI(sender_psid, this.randomStr(xemtkb));
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
           }
           break;
         case 'sub':
-          if (dataOfCheckId) {
-            const subValue = dataOfCheckId.sub;
+          if (existUser) {
+            const subValue = existUser.sub;
             switch (subValue) {
-              case '0':
+              case 0:
               case undefined:
-                await DB.addSub(sender_psid);
-                await fbAPI.callSendAPI(sender_psid, this.randomStr(sub));
+                await DB.updateSub(uid, 1);
+                await fbAPI.callSendAPI(uid, this.randomStr(mess.sub));
                 break;
               default:
-                await fbAPI.callSendAPI(
-                  sender_psid,
-                  this.randomStr(dadangkyroi)
-                );
+                await fbAPI.callSendAPI(uid, this.randomStr(mess.dadangkyroi));
             }
           } else {
-            await fbAPI.callSendAPI(sender_psid, this.randomStr(notInfo));
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.notInfo));
           }
           break;
         case 'huyNhanTin':
-          if (dataOfCheckId) {
-            const subValue = dataOfCheckId.sub;
+          if (existUser) {
+            const subValue = existUser.sub;
             switch (subValue) {
               case 1:
-                await DB.removeSub(sender_psid);
-                await fbAPI.callSendAPI(sender_psid, this.randomStr(removeSub));
+                await DB.updateSub(uid, 0);
+                await fbAPI.callSendAPI(uid, this.randomStr(mess.removeSub));
                 break;
               case 0:
                 await fbAPI.callSendAPI(
-                  sender_psid,
-                  this.randomStr(huyDangKyRoiMa)
+                  uid,
+                  this.randomStr(mess.huyDangKyRoiMa)
                 );
                 break;
               default:
                 await fbAPI.callSendAPI(
-                  sender_psid,
-                  this.randomStr(daHuyDangKyRoi)
+                  uid,
+                  this.randomStr(mess.daHuyDangKyRoi)
                 );
             }
           } else {
-            await fbAPI.callSendAPI(sender_psid, this.randomStr(notInfo));
+            await fbAPI.callSendAPI(uid, this.randomStr(this.notInfo));
           }
           break;
         case 'hauAnDuocKhong':
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(hauAnDuocKhong));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauAnDuocKhong));
           break;
         case 'hauCoTheLamGi':
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(hauCoTheLamGi));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauCoTheLamGi));
           break;
       }
     } else {
-      await fbAPI.callSendAPI(sender_psid, this.randomStr(notrain));
+      await fbAPI.callSendAPI(uid, this.randomStr(mess.notrain));
     }
   }
-  async handlePostback(sender_psid, message) {
-    const senderName = await fbAPI.getSenderName(sender_psid);
-    const xemtkb = [`Đưa mã sinh viên của ${senderName} cho Hấu 🍉 nào?`];
-    const danglaytkb = [
-      `Chờ Hấu 🍉 xíu nha... Hấu 🍉 đang lấy dữ liệu về cho ${senderName} 😋`,
-      `Hấu 🍉 đang lấy dữ liệu vừa nóng vừa thổi về cho ${senderName} nè. Chờ xíu nhen...`,
-    ];
-    const sub = [
-      `Cảm ơn ${senderName} đã tin tưởng 🍉. Từ giờ trở đi, mỗi sáng thức dậy 🍉 sẽ là người đầu tiên nhắn tin cho ${senderName}`,
-    ];
-    const removeSub = [
-      `Hủy thành công! Khi nào nhớ 🍉 thì hãy đăng ký nhận tin lại nha 😭`,
-    ];
-    const notInfo = [
-      `${senderName} vui lòng cung cấp Mã sinh viên cho 🍉 trước khi muốn đăng ký nhận tin hàng ngày nhé`,
-    ];
-    const dadangkyroi = [
-      `${senderName} đã đăng ký nhận tin trước đó rồi mà. Nếu ý của ${senderName} là muốn hủy đăng ký nhận tin thì ${senderName} có thể chat hoặc chọn "Hủy đăng ký" từ menu rồi gửi lại cho 🍉 nhé... Nhưng mà 🍉 sẽ buồn lắm khi ${senderName} làm vậy 😥`,
-    ];
+  async handlePostback(uid, message) {
+    const name = await fbAPI.getSenderName(uid);
+    const mess = new text(name);
+    const existUser = await DB.checkExistUser(uid);
+    await fbAPI.sendMarkSeen(uid);
+    await fbAPI.sendTyping(uid);
 
-    const daHuyDangKyRoi = [
-      `Xì... ${senderName} đã bao giờ đăng ký nhận tin đâu mà cứ đòi hủy vậy? Ghét 🍉 đến thế à 🙄`,
-    ];
-
-    const huyDangKyRoiMa = [
-      `${senderName} đã hủy đăng ký rồi mà, hủy gì mà hủy lắm vậy. ${senderName} hết thương 🍉 rồi à?`,
-    ];
-
-    const hauAnDuocKhong = [
-      `Huhu... 🍉 là để yêu thương nhé ${senderName}, không có ăn được đâu 💔`,
-    ];
-
-    const hauCoTheLamGi = [
-      `🍉 là một robot xinh gái siêu cấp vô địch được Boss Dương Nam Trường tạo ra vào ngày 08/07/2020 với nhiệm vụ nhắc nhở lịch học cho các anh em HUMGer và cũng có thể tâm sự với anh em nếu cần 😘`,
-    ];
-
-    const dataOfCheckId = await DB.checkData(sender_psid);
-    await fbAPI.sendMarkSeen(sender_psid);
-    await fbAPI.sendTyping(sender_psid);
     switch (message.payload) {
       case 'Xem lịch học 📅':
-        if (dataOfCheckId) {
-          const msv = await DB.getMsv(sender_psid);
-          const tkb = await humgAPI.getSchedule(msv, senderName, sender_psid);
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(danglaytkb));
+        if (existUser) {
+          const msv = existUser.msv;
+
+          const tkb = await humgAPI.getSchedule(msv, name, uid);
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
           if (tkb.length > 72) {
             await fbAPI.callSendAPI(
-              sender_psid,
-              `Hôm nay ${humgAPI.getFullDate()}, ${senderName} phải học:`
+              uid,
+              `Hôm nay ${humgAPI.getFullDate()}, ${name} phải học:`
             );
-            await fbAPI.callSendAPI(sender_psid, tkb);
+            await fbAPI.callSendAPI(uid, tkb);
             await fbAPI.callSendAPI(
-              sender_psid,
-              `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${senderName} 3000 ❤`
+              uid,
+              `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${name} 3000 ❤`
             );
           } else {
-            await fbAPI.callSendAPI(sender_psid, tkb);
+            await fbAPI.callSendAPI(uid, tkb);
           }
         } else {
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(xemtkb));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
         }
         break;
       case 'Đăng ký nhận tin ⏰':
-        if (dataOfCheckId) {
-          const subValue = dataOfCheckId.sub;
+        if (existUser) {
+          const subValue = existUser.sub;
           switch (subValue) {
             case 0:
             case undefined:
-              await DB.addSub(sender_psid);
-              await fbAPI.callSendAPI(sender_psid, this.randomStr(sub));
+              await DB.updateSub(uid, 1);
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.sub));
               break;
             default:
-              await fbAPI.callSendAPI(sender_psid, this.randomStr(dadangkyroi));
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.dadangkyroi));
           }
         } else {
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(notInfo));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.notInfo));
         }
         break;
       case 'Hủy nhận tin 😭':
-        if (dataOfCheckId) {
-          const subValue = dataOfCheckId.sub;
+        if (existUser) {
+          const subValue = existUser.sub;
           switch (subValue) {
             case 1:
-              await DB.removeSub(sender_psid);
-              await fbAPI.callSendAPI(sender_psid, this.randomStr(removeSub));
+              await DB.updateSub(uid, 0);
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.removeSub));
               break;
             case 0:
-              await fbAPI.callSendAPI(
-                sender_psid,
-                this.randomStr(huyDangKyRoiMa)
-              );
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.huyDangKyRoiMa));
               break;
             default:
-              await fbAPI.callSendAPI(
-                sender_psid,
-                this.randomStr(daHuyDangKyRoi)
-              );
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.daHuyDangKyRoi));
           }
         } else {
-          await fbAPI.callSendAPI(sender_psid, this.randomStr(notInfo));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.notInfo));
         }
         break;
       case '🍉 có ăn được không?':
-        await fbAPI.callSendAPI(sender_psid, this.randomStr(hauAnDuocKhong));
+        await fbAPI.callSendAPI(uid, this.randomStr(mess.hauAnDuocKhong));
         break;
       case '🍉 có thể làm được gì?':
-        await fbAPI.callSendAPI(sender_psid, this.randomStr(hauCoTheLamGi));
+        await fbAPI.callSendAPI(uid, this.randomStr(mess.hauCoTheLamGi));
         break;
     }
   }

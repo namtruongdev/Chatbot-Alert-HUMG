@@ -17,20 +17,20 @@ class Job {
           for (let i of allMemberSub) {
             const msv = i.msv;
             const name = i.firstName;
-            const id = i.id;
-            const tkb = await humgAPI.getSchedule(msv, name, id);
+            const uid = i.uid;
+            const tkb = await humgAPI.getSchedule(msv, name, uid);
             if (tkb.length > 72) {
               await fbAPI.callSendAPI(
-                id,
+                uid,
                 `Hôm nay ${humgAPI.getFullDate()}, ${name} phải học:`
               );
-              await fbAPI.callSendAPI(id, tkb);
+              await fbAPI.callSendAPI(uid, tkb);
               await fbAPI.callSendAPI(
-                id,
+                uid,
                 `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${name} 3000 ❤`
               );
             } else {
-              await fbAPI.callSendAPI(id, tkb);
+              await fbAPI.callSendAPI(uid, tkb);
             }
           }
         }

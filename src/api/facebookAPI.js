@@ -76,6 +76,16 @@ class facebookAPI {
       },
     }).then((res) => res.data.first_name);
   }
+  async getGender(psid) {
+    return await axios({
+      method: 'GET',
+      url: `https://graph.facebook.com/${psid}`,
+      params: {
+        fields: 'gender',
+        access_token: this.token,
+      },
+    }).then((res) => res.data.gender);
+  }
 }
 
 module.exports = new facebookAPI();
