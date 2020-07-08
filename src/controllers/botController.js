@@ -137,7 +137,8 @@ class Bot {
   }
   async handlePostback(uid, message) {
     const name = await fbAPI.getSenderName(uid);
-    const mess = new text(name);
+    const gender = await fbAPI.getGender(uid);
+    const mess = new text(name, gender);
     const existUser = await DB.checkExistUser(uid);
     await fbAPI.sendMarkSeen(uid);
     await fbAPI.sendTyping(uid);
