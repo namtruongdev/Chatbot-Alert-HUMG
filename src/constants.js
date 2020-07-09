@@ -75,7 +75,8 @@ class Text {
       `Xin lỗi ${this.getGender()} ${name} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được Boss Trường dạy nhiều nên không biết trả lời câu này như nào 😥`,
       'Câu này hình như em chưa được dạy. Ahihi 😁',
       `Ui chu choa ${this.getGender()} ${name} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
-      `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣``Nãy giờ nói chuyện với ${this.getGender()} ${name}, 🍉 say quá nên không biết trả lời làm sao`,
+      `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣`,
+      `Nãy giờ nói chuyện với ${this.getGender()} ${name}, 🍉 say quá nên không biết trả lời làm sao`,
       `Câu này để lúc khác 🍉 trả lời ${this.getGender()} ${name} được không? 🍉 quên bài rồi 😃`,
     ];
     this.removeSub = [
