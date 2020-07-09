@@ -36,6 +36,12 @@ class Bot {
         case 'baoCaoMsv':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.baoCaoMsv));
           break;
+        case 'baoHauKhongBietGi':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.baoHauKhongBietGi));
+          break;
+        case 'blabla':
+          await fbAPI.callSendAPI(uid, mess.baoHauKhongBietGi);
+          break;
         case 'bye':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.bye));
           break;
@@ -45,8 +51,56 @@ class Bot {
         case 'camOn':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.camOn));
           break;
+        case 'canGiup':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.canGiup));
+          break;
+        case 'chanNan':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.chanNan));
+          break;
+        case 'chuiBay':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.chuiBay));
+          break;
         case 'chuiHauNgu':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.chuiHauNgu));
+          break;
+        case 'coNhoLai':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.coNhoLai));
+          break;
+        case 'coThongTinNguoiDungKhong':
+          await fbAPI.callSendAPI(
+            uid,
+            this.randomStr(mess.coThongTinNguoiDungKhong)
+          );
+          break;
+        case 'cuoi':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.cuoi));
+          break;
+        case 'danDo':
+          await fbAPI.callSendAPI(uid, mess.danDo);
+          break;
+        case 'dauXanh':
+          await fbAPI.callSendAPI(uid, mess.dauXanh);
+          break;
+        case 'doaGietHau':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.doaGietHau));
+          break;
+        case 'dongVien':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.dongVien));
+          break;
+        case 'dongY':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.dongY));
+          break;
+        case 'dontknow':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.dontknow));
+          break;
+        case 'gaTinh':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.gaTinh));
+          break;
+        case 'hauAnComChua':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauAnComChua));
+          break;
+        case 'hauAnGi':
+          await fbAPI.callSendAPI(uid, mess.hauAnGi);
           break;
         case 'msv':
           const msv = entities['msv:msv'][0].value;
