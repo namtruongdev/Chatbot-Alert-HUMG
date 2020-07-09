@@ -30,8 +30,23 @@ class Bot {
       await fbAPI.sendMarkSeen(uid);
       await fbAPI.sendTyping(uid);
       switch (intent.name) {
+        case 'aoTuong':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.aoTuong));
+          break;
+        case 'baoCaoMsv':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.baoCaoMsv));
+          break;
+        case 'bye':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.bye));
+          break;
         case 'chaohoi':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.chaoHoi));
+          break;
+        case 'camOn':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.camOn));
+          break;
+        case 'chuiHauNgu':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.chuiHauNgu));
           break;
         case 'msv':
           const msv = entities['msv:msv'][0].value;
@@ -129,6 +144,18 @@ class Bot {
           break;
         case 'hauCoTheLamGi':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.hauCoTheLamGi));
+          break;
+        case 'thatKhong':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.thatKhong));
+          break;
+        case 'test':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.test));
+          break;
+        case 'xemDiemTichLuy':
+          await fbAPI.callSendAPI(uid, mess.khongKhaDung);
+          break;
+        case 'xemHocPhi':
+          await fbAPI.callSendAPI(uid, mess.khongKhaDung);
           break;
       }
     } else {
