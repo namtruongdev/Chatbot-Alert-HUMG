@@ -225,6 +225,9 @@ class Bot {
     await fbAPI.sendTyping(uid);
 
     switch (message.payload) {
+      case 'chào':
+        await fbAPI.callSendAPI(uid, this.randomStr(mess.chaoHoi));
+        break;
       case 'Xem lịch học 📅':
         if (existUser) {
           const msv = existUser.msv;
