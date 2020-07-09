@@ -66,25 +66,15 @@ class facebookAPI {
       }
     });
   }
-  async getSenderName(psid) {
+  async getInfoUsers(psid) {
     return await axios({
       method: 'GET',
       url: `https://graph.facebook.com/${psid}`,
       params: {
-        fields: 'first_name',
+        fields: 'name,first_name,profile_pic,gender',
         access_token: this.token,
       },
-    }).then((res) => res.data.first_name);
-  }
-  async getGender(psid) {
-    return await axios({
-      method: 'GET',
-      url: `https://graph.facebook.com/${psid}`,
-      params: {
-        fields: 'gender',
-        access_token: this.token,
-      },
-    }).then((res) => res.data.gender);
+    }).then((res) => res.data);
   }
   async getStarted() {
     let data = {

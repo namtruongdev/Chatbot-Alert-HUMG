@@ -27,8 +27,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 initWebRoute(app);
 (async () => {
   await cron.guiLichHoc();
-  await fbAPI.getStarted();
-  await fbAPI.persistentMenu();
+  // await fbAPI.getStarted();
+  // await fbAPI.persistentMenu();
 })();
 
 app.listen(port, () =>

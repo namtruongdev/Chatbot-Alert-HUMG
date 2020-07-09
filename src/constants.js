@@ -103,7 +103,7 @@ class Text {
     this.danglaytkb = [
       `Chờ Hấu 🍉 xíu nha... Hấu 🍉 đang lấy dữ liệu về cho ${this.getGender()} 😋`,
       `Hấu 🍉 đang lấy dữ liệu vừa nóng vừa thổi về cho ${this.getGender()} ${name} nè. Chờ xíu nhen...`,
-      `Ủm ba la xì bùa... hãy xem phép thuật của 🍉 đấy`,
+      `Ủm ba la xì bùa... hãy xem phép thuật của 🍉 đây`,
     ];
     this.gaTinh = [
       `Yêu luôn chứ Hấu 🍉 có ngán gì đâu chớ 😘`,

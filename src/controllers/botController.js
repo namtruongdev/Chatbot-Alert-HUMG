@@ -18,8 +18,11 @@ class Bot {
     return arr[index];
   }
   async handleMessage(uid, message) {
-    const name = await fbAPI.getSenderName(uid);
-    const gender = await fbAPI.getGender(uid);
+    const infoUsers = await fbAPI.getInfoUsers(uid);
+    const fullName = infoUsers.name;
+    const name = infoUsers.first_name;
+    const profile_pic = infoUsers.profile_pic;
+    const gender = infoUsers.gender;
     const mess = new text(name, gender);
     const entities = this.firstEntity(message.nlp);
     const intent = this.getIntent(message.nlp);
@@ -115,7 +118,10 @@ class Bot {
           } else {
             const data = await new User({
               uid: uid,
+              name: fullName,
               firstName: name,
+              profile_pic: profile_pic,
+              gender: gender,
               msv: msv,
               sub: 0,
             });
@@ -217,8 +223,9 @@ class Bot {
     }
   }
   async handlePostback(uid, message) {
-    const name = await fbAPI.getSenderName(uid);
-    const gender = await fbAPI.getGender(uid);
+    const infoUsers = await fbAPI.getInfoUsers(uid);
+    const name = infoUsers.first_name;
+    const gender = infoUsers.gender;
     const mess = new text(name, gender);
     const existUser = await DB.checkExistUser(uid);
     await fbAPI.sendMarkSeen(uid);
