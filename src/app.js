@@ -32,8 +32,9 @@ initWebRoute(app);
   // await fbAPI.persistentMenu();
   const allMemberSub = await DB.getSub();
   for (let i of allMemberSub) {
+    let uid = i.uid;
     await fbAPI.callSendAPIWithTag(
-      i,
+      uid,
       'Thông báo quan trọng về tính năng nhận tin lịch học hàng ngày. Hấu 🍉 xin mời mọi người đọc để không bị bỏ lỡ thông báo: https://www.facebook.com/alertHUMG/photos/a.129148562170965/129142742171547/?type=3&theater'
     );
   }
