@@ -5,6 +5,7 @@ import express from 'express';
 import initWebRoute from './routes/web';
 import cron from './controllers/cronController';
 import fbAPI from './api/facebookAPI';
+import DB from './controllers/dbController';
 
 const app = express();
 const port = process.env.PORT_LOCAL || process.env.PORT;
@@ -29,12 +30,13 @@ initWebRoute(app);
   await cron.guiLichHoc();
   // await fbAPI.getStarted();
   // await fbAPI.persistentMenu();
-
-  await fbAPI.callSendAPIWithTag(
-    4032267046815490,
-    'Thông báo. Do chính sách của Facebook nhằm ngăn chặn tin nhắn rác nên Hấu 🍉 chỉ có thể nhắc lịch học hàng ngày cho những ai có tương tác với em trong vòng 2 ngày. Để tránh bỏ lỡ lịch học, mỗi sáng nhận được tin từ Hấu, bạn nên trả lời 1 câu gì đó.'
-  );
-  await fbAPI.callSendAPIWithTag(4032267046815490, 'Thân gửi ❤');
+  const allMemberSub = await DB.getSub();
+  for (let i of allMemberSub) {
+    await fbAPI.callSendAPIWithTag(
+      i,
+      'Thông báo quan trọng về tính năng nhận tin lịch học hàng ngày. Hấu 🍉 xin mời mọi người đọc để không bị bỏ lỡ thông báo: https://www.facebook.com/alertHUMG/photos/a.129148562170965/129142742171547/?type=3&theater'
+    );
+  }
 })();
 
 app.listen(port, () =>
