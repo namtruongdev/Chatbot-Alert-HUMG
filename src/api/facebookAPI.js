@@ -66,6 +66,29 @@ class facebookAPI {
       }
     });
   }
+
+  async callSendAPIWithTag(psid, message) {
+    let data = {
+      recipient: { id: psid },
+      message: { text: message },
+      messaging_type: 'MESSAGE_TAG',
+      tag: 'CONFIRMED_EVENT_UPDATE',
+    };
+    return await axios({
+      method: 'POST',
+      url: 'https://graph.facebook.com/v7.0/me/messages',
+      params: { access_token: this.token },
+      data: data,
+    }).catch((error) => {
+      if (error.response) {
+        console.log('PSID: ', psid);
+        console.log('Status code: ', error.response.status);
+        console.log('Response: ', error.response.data);
+      } else if (error.request) {
+        console.log('Request: ', error.request);
+      }
+    });
+  }
   async getInfoUsers(psid) {
     return await axios({
       method: 'GET',
