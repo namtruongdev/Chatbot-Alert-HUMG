@@ -20,17 +20,17 @@ class Job {
             const uid = i.uid;
             const tkb = await humgAPI.getSchedule(msv, name, uid);
             if (tkb.length > 72) {
-              await fbAPI.callSendAPI(
+              await fbAPI.callSendAPIWithTag(
                 uid,
                 `Hôm nay ${humgAPI.getFullDate()}, ${name} phải học:`
               );
-              await fbAPI.callSendAPI(uid, tkb);
-              await fbAPI.callSendAPI(
+              await fbAPI.callSendAPIWithTag(uid, tkb);
+              await fbAPI.callSendAPIWithTag(
                 uid,
                 `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${name} 3000 ❤`
               );
             } else {
-              await fbAPI.callSendAPI(uid, tkb);
+              await fbAPI.callSendAPIWithTag(uid, tkb);
             }
           }
         }
