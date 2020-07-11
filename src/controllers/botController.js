@@ -1,6 +1,7 @@
 require('dotenv').config();
 import fbAPI from '../api/facebookAPI';
 import humgAPI from '../api/humgAPI';
+import NtvForex from '../api/ntvforex';
 import DB from '../controllers/dbController';
 import User from '../models/users';
 import text from '../constants';
@@ -217,6 +218,19 @@ class Bot {
         case 'xemHocPhi':
           await fbAPI.callSendAPI(uid, mess.khongKhaDung);
           break;
+        case 'usdjpy':
+          await fbAPI.callSendAPI(uid, `Chời Hấu 🍉 xíu nha...`);
+          let data = await NtvForex.getForexNews();
+          const result = [];
+          const currency = entities['usdjpy:usdjpy'][0].value;
+          const rg = new RegExp(`${currency}`);
+          for (let i of data) {
+            if (result.length < 3 && rg.test(i.title)) {
+              result.push(i);
+            }
+          }
+          await fbAPI.sendListAPI(uid, result);
+          break;
       }
     } else {
       await fbAPI.callSendAPI(uid, this.randomStr(mess.notrain));
@@ -289,7 +303,7 @@ class Bot {
               await fbAPI.callSendAPI(uid, this.randomStr(mess.daHuyDangKyRoi));
           }
         } else {
-          await fbAPI.callSendAPI(uid, this.randomStr(mess.notInfo));
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.notSub));
         }
         break;
       case '🍉 có ăn được không?':

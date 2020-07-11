@@ -135,8 +135,11 @@ class Text {
     this.notInfo = [
       `${this.getGender()} ${name} vui lòng cung cấp Mã sinh viên cho 🍉 trước khi muốn đăng ký nhận tin hàng ngày nhé`,
     ];
+    this.notSub = [
+      `${this.getGender()} ${name} đã đăng ký cái cái gì đâu mà đòi hủy vậy. Hic 😥`,
+    ];
     this.notrain = [
-      `Xin lỗi ${this.getGender()} ${name} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được Boss Trường dạy nhiều nên không biết trả lời câu này như nào 😥`,
+      `Xin lỗi ${this.getGender()} ${name} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được dạy nhiều nên không biết trả lời câu này như nào 😥`,
       'Câu này hình như em chưa được dạy. Ahihi 😁',
       `Ui chu choa ${this.getGender()} ${name} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
       `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣`,

@@ -110,7 +110,6 @@ class facebookAPI {
       data: data,
     }).catch((error) => {
       if (error.response) {
-        console.log('PSID: ', psid);
         console.log('Status code: ', error.response.status);
         console.log('Response: ', error.response.data);
       } else if (error.request) {
@@ -151,7 +150,60 @@ class facebookAPI {
       data: data,
     }).catch((error) => {
       if (error.response) {
-        console.log('PSID: ', psid);
+        console.log('Status code: ', error.response.status);
+        console.log('Response: ', error.response.data);
+      } else if (error.request) {
+        console.log('Request: ', error.request);
+      }
+    });
+  }
+  async sendListAPI(uid, message) {
+    // const data = {
+    //   recipient: {
+    //     id: uid,
+    //   },
+    //   message: {
+    //     attachment: {
+    //       type: 'template',
+    //       payload: {
+    //         template_type: 'list',
+    //         top_element_style: 'large',
+    //         elements: [],
+    //         buttons: [
+    //           {
+    //             title: 'Xem thêm',
+    //             type: 'postback',
+    //             payload: 'https://laptrinhbanthan.com',
+    //           },
+    //         ],
+    //       },
+    //     },
+    //   },
+    // };
+    // for (let i of message) {
+    //   data.message.attachment.payload.elements.push({
+    //     title: i.title,
+    //     subtitle: 'test',
+    //     image_url:
+    //       'https://res.cloudinary.com/alerthumg/image/upload/v1594403884/16300274_10212320324353971_28259801392996641_o_vvkxue.jpg',
+    //   });
+    // }
+    let data = {
+      recipient: { id: uid },
+      message: { text: `` },
+    };
+    for (let i of message) {
+      data.message.text += `\n📌 ${i.title}
+     -> Xem chi tiết tại: ${i.url}\n`;
+    }
+    return await axios({
+      method: 'POST',
+      url: 'https://graph.facebook.com/v7.0/me/messages',
+      params: { access_token: this.token },
+      data: data,
+    }).catch((error) => {
+      if (error.response) {
+        console.log('PSID: ', uid);
         console.log('Status code: ', error.response.status);
         console.log('Response: ', error.response.data);
       } else if (error.request) {
