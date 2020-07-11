@@ -154,6 +154,10 @@ class Text {
       `Thật chứ. 🍉 không biết nói dối bao giờ`,
       `${this.getGender()} ${name} phải tin em chứ 😁`,
     ];
+    this.thayLeXuanThanh = [
+      `Hấu 🍉 biết chứ, trước em hay sang nhà thầy nhậu mà 😎`,
+      `Thầy Thành trưởng phòng Công tác Chính trị - Sinh viên chứ gì? Ở trường Mỏ ai mà không nghe danh chứ 😊`,
+    ];
     this.thaydoimsv = [
       `❗ Chú ý: ${this.getGender()} ${name} vừa thay đổi mã sinh viên của mình.`,
     ];

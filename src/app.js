@@ -6,7 +6,7 @@ import initWebRoute from './routes/web';
 import cron from './controllers/cronController';
 // import fbAPI from './api/facebookAPI';
 // import DB from './controllers/dbController';
-import NtvForex from './api/ntvforex';
+// import NtvForex from './api/ntvforex';
 
 const app = express();
 const port = process.env.PORT_LOCAL || process.env.PORT;
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 initWebRoute(app);
 (async () => {
   await cron.guiLichHoc();
-  await NtvForex.getForexNews();
+  // await NtvForex.getForexNews();
   // await fbAPI.getStarted();
   // await fbAPI.persistentMenu();
   // const allMemberSub = await DB.getSub();

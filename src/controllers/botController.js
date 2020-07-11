@@ -231,6 +231,13 @@ class Bot {
           }
           await fbAPI.sendListAPI(uid, result);
           break;
+        case 'thayLeXuanThanh':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.thayLeXuanThanh));
+          await fbAPI.sendImageAPI(
+            uid,
+            `https://res.cloudinary.com/alerthumg/image/upload/v1594403884/16300274_10212320324353971_28259801392996641_o_vvkxue.jpg`
+          );
+          break;
       }
     } else {
       await fbAPI.callSendAPI(uid, this.randomStr(mess.notrain));
