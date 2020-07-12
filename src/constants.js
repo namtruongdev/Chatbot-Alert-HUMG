@@ -61,6 +61,7 @@ class Text {
       `Cục súc thế này... Thảo nào đến giờ ${this.getGender()} ${name} vẫn chưa có người iu 💔`,
       `Huhuhu... Em vẫn đang cố gắng hoàn thiện bản thân từng ngày mà 😭`,
     ];
+    this.chuaCoLichThi = `Vẫn chưa có lịch thi môn nào cả ${this.getGender()} ${name} ơi. Cứ chơi thoải mái đi ${this.getGender()} 😅`;
     this.coNhoLai = [
       `Hấu 🍉 cũng đang trí lắm chắc không nhớ nổi đâu 😁`,
       `Tạm thời Hấu 🍉 chưa nhớ ra. Lúc nào Hấu 🍉 nhớ ra sẽ bảo ${this.getGender()} ${name} sau nha... Yêu yêu ❤`,
@@ -105,6 +106,9 @@ class Text {
       `Hấu 🍉 đang lấy dữ liệu vừa nóng vừa thổi về cho ${this.getGender()} ${name} nè. Chờ xíu nhen...`,
       `Ủm ba la xì bùa... hãy xem phép thuật của 🍉 đây`,
     ];
+    this.dangLayLichThi = [
+      `Hấu 🍉 đang lấy lịch thi... ${this.getGender()} ${name} chờ xíu nha 😘`,
+    ];
     this.gaTinh = [
       `Yêu luôn chứ Hấu 🍉 có ngán gì đâu chớ 😘`,
       `Chỉ cần ${this.getGender()} ${name} nói yêu. Hấu 🍉 sẽ bám theo ${this.getGender()} suốt đời 😍`,
@@ -112,6 +116,9 @@ class Text {
     ];
     this.daluumsv = [
       `🍉 đã nhớ Mã sinh viên của ${this.getGender()} ${name} rồi nha. Ahihi, yên tâm 🍉 sẽ không bao giờ quên được đâu. Lúc nào ${this.getGender()} cần xem lịch học thì cứ nhắn cho 🍉 biết nhé`,
+    ];
+    this.khongPhaiThi = [
+      `Hôm nay ${this.getGender()} ${name} không phải thi môn nào ạ 😃`,
     ];
     this.hauAnComChua = [
       `Ui giời. Dăm 3 cái hột cơm ý mà ${this.getGender()}, nhắn tin với ${this.getGender()} ${name} quan trọng hơn ❤`,
@@ -139,12 +146,13 @@ class Text {
       `${this.getGender()} ${name} đã đăng ký cái cái gì đâu mà đòi hủy vậy. Hic 😥`,
     ];
     this.notrain = [
-      `Xin lỗi ${this.getGender()} ${name} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được dạy nhiều nên không biết trả lời câu này như nào 😥`,
-      'Câu này hình như em chưa được dạy. Ahihi 😁',
-      `Ui chu choa ${this.getGender()} ${name} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
-      `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣`,
-      `Nãy giờ nói chuyện với ${this.getGender()} ${name}, 🍉 say quá nên không biết trả lời làm sao`,
-      `Câu này để lúc khác 🍉 trả lời ${this.getGender()} ${name} được không? 🍉 quên bài rồi 😃`,
+      `Xin lỗi ${this.getGender()} ${name}, Hấu 🍉 chưa được dạy để trả lời câu này. Hiện tại em chỉ có thể làm được những thứ sau:\n✔ Xem lịch học\n✔ Xem lịch học ngày mai\n✔ Xem lịch thi\n✔ Tâm sự\n✔ Thông báo lịch học hàng ngày`,
+      // `Xin lỗi ${this.getGender()} ${name} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được dạy nhiều nên không biết trả lời câu này như nào 😥`,
+      // 'Câu này hình như em chưa được dạy. Ahihi 😁',
+      // `Ui chu choa ${this.getGender()} ${name} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
+      // `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣`,
+      // `Nãy giờ nói chuyện với ${this.getGender()} ${name}, 🍉 say quá nên không biết trả lời làm sao`,
+      // `Câu này để lúc khác 🍉 trả lời ${this.getGender()} ${name} được không? 🍉 quên bài rồi 😃`,
     ];
     this.removeSub = [
       `Hủy thành công! Khi nào nhớ 🍉 thì hãy đăng ký nhận tin lại nha 😭`,

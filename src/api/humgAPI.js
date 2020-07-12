@@ -9,6 +9,13 @@ class Humg {
     const year = d.getFullYear();
     return `${day}/${month[d.getMonth()]}/${year}`;
   }
+  getFullNextDate() {
+    const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const d = new Date();
+    const day = d.getDate() <= 31 ? d.getDate() + 1 : 1;
+    const year = d.getFullYear();
+    return `${day}/${month[d.getMonth()]}/${year}`;
+  }
   getTime(tiet) {
     const time = {
       1: ['6 giờ 45 phút', '7 giờ 35 phút'],
@@ -45,6 +52,23 @@ class Humg {
     const d = new Date();
     return weekDay[d.getDay()];
   }
+  getNextDay() {
+    const weekDay = [
+      'Chủ nhật',
+      'Thứ hai',
+      'Thứ ba',
+      'Thứ tư',
+      'Thứ năm',
+      'Thứ sáu',
+      'Thứ bảy',
+    ];
+    const d = new Date();
+    const nextDay = d.getDay() + 1;
+    if (nextDay === 7) {
+      return 'Chủ nhật';
+    }
+    return weekDay[nextDay];
+  }
   async getSchedule(msv, name, id) {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -76,14 +100,13 @@ class Humg {
       let subject = ``;
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getDay().toLowerCase()) {
-          subject += `📌 ${i[0]} (${i[1]}):
-          \r - Phòng ${i[4]}
-          \r - Tiết ${i[5]} - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}
-          \r - ${this.getTime(i[5]).batDau} - ${
+          subject += `📌 ${i[0]} (${i[1]}):\n- Phòng ${i[4]}\n- Tiết ${
+            i[5]
+          } - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}\n- ${
+            this.getTime(i[5]).batDau
+          } - ${
             this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc
-          }
-          \r - Giảng viên là ${i[7]}
-          \n\n`;
+          }\n- Giảng viên là ${i[7]}\n`;
         }
       }
 
@@ -99,6 +122,110 @@ class Humg {
       await browser.close();
       return `Tuần này ${name} được nghỉ rồi. Sướng vậy ta 🤩`;
     }
+  }
+  async getScheduleNextDay(msv, name) {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
+    await page.goto(
+      `https://daotao.humg.edu.vn/default.aspx?page=thoikhoabieu&sta=0&id=${msv}`
+    );
+
+    const data = await page.evaluate(() => {
+      let td = document.querySelectorAll('td[onmouseover]');
+      td = [...td];
+      let result = td.map((i) => i.getAttribute('onmouseover'));
+      return result;
+    });
+
+    const rg = /[^']+/g;
+    const tkb = [];
+    if (data.length !== 0) {
+      for (let i of data) {
+        let result = i.match(rg);
+        let temp = [];
+        for (let i of result) {
+          if (i !== ',') temp.push(i);
+        }
+        const final = temp.slice(1, 11);
+        tkb.push(final);
+      }
+      let subject = ``;
+      for (let i of tkb) {
+        if (i[2].toLowerCase() === this.getNextDay().toLowerCase()) {
+          subject += `📌 ${i[0]} (${i[1]}):
+          \r - Phòng ${i[4]}
+          \r - Tiết ${i[5]} - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}
+          \r - ${this.getTime(i[5]).batDau} - ${
+            this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc
+          }
+          \r - Giảng viên là ${i[7]}
+          \n\n`;
+        }
+      }
+
+      switch (subject) {
+        case '':
+          await browser.close();
+          return `Há há... Mai được nghỉ rồi ${name} ơi. Hôm nay cứ chơi thoải mái đê 😆`;
+        default:
+          await browser.close();
+          return subject;
+      }
+    } else {
+      await browser.close();
+      return `Tuần này ${name} được nghỉ rồi. Sướng vậy ta 🤩`;
+    }
+  }
+  async getTestSchedule(msv) {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
+    await page.goto(
+      `https://daotao.humg.edu.vn/Default.aspx?page=xemlichthi&id=${msv}`
+    );
+
+    const data = await page.evaluate(() => {
+      let tr = document.querySelectorAll(
+        `[onmouseover*="className ='rowOnmouseover-GridView '"]`
+      );
+      tr = [...tr];
+
+      let result = tr.map((i) => ({
+        subject: i.children[2].textContent.trim(),
+        quantum: i.children[5].textContent.trim(),
+        date: i.children[6].textContent.trim(),
+        start: i.children[7].textContent.trim(),
+        end:
+          parseInt(i.children[7].textContent.trim()) +
+          parseInt(i.children[8].textContent.trim()) -
+          1,
+        room: i.children[9].textContent.trim(),
+        note: i.children[10].textContent.trim(),
+      }));
+      return result;
+    });
+    await browser.close();
+    return data;
+  }
+  async getPoint(msv) {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: false,
+    });
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1366, height: 768 });
+    await page.goto(
+      `https://daotao.humg.edu.vn/Default.aspx?page=xemdiemthi&id=${msv}`
+    );
+    await page.click('#ctl00_ContentPlaceHolder1_ctl00_lnkChangeview2');
+    await page.waitForNavigation();
+    await page.mouse.move(0, 0);
+    await page.waitForNavigation();
+    await page.mouse.down();
+    await page.screenshot({ path: 'screenshot.png' });
   }
 }
 

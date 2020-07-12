@@ -106,6 +106,28 @@ class Bot {
         case 'hauAnGi':
           await fbAPI.callSendAPI(uid, mess.hauAnGi);
           break;
+        case 'maiHocGi':
+          if (existUser) {
+            const msv = existUser.msv;
+            const tkb = await humgAPI.getScheduleNextDay(msv, name);
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
+            if (tkb.length > 72) {
+              await fbAPI.callSendAPI(
+                uid,
+                `Ngày mai ${humgAPI.getFullNextDate()}, ${name} phải học:`
+              );
+              await fbAPI.callSendAPI(uid, tkb);
+              await fbAPI.callSendAPI(
+                uid,
+                `Nhớ đi học đầy đủ và đúng giờ nha... Yêu ${name} 3000 ❤`
+              );
+            } else {
+              await fbAPI.callSendAPI(uid, tkb);
+            }
+          } else {
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
+          }
+          break;
         case 'msv':
           const msv = entities['msv:msv'][0].value;
           if (existUser) {
@@ -238,6 +260,48 @@ class Bot {
             `https://res.cloudinary.com/alerthumg/image/upload/v1594403884/16300274_10212320324353971_28259801392996641_o_vvkxue.jpg`
           );
           break;
+        case 'xemLichThi':
+          if (existUser) {
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayLichThi));
+            const msv = existUser.msv;
+            const lichThi = await humgAPI.getTestSchedule(msv);
+            if (lichThi) {
+              const d = new Date();
+              let result = ``;
+
+              for (let i of lichThi) {
+                const date = i.date.split('/');
+                if (parseInt(date[0]) === d.getDate()) {
+                  result += `\n📌 Môn ${i.subject}:\n- Sĩ số: ${
+                    i.quantum
+                  }\n- Tiết ${i.start} - Tiết ${i.end}\n- ${
+                    humgAPI.getTime(i.start).batDau
+                  } - ${humgAPI.getTime(i.end).ketThuc}\n- Phòng ${
+                    i.room
+                  }\n- Hình thức thi ${i.note}\n`;
+                }
+              }
+              if (result.length === 0) {
+                return await fbAPI.callSendAPI(
+                  uid,
+                  this.randomStr(mess.khongPhaiThi)
+                );
+              } else {
+                await fbAPI.callSendAPI(
+                  uid,
+                  `Hôm nay ${humgAPI.getFullDate()}, ${name} phải thi:`
+                );
+                return await fbAPI.callSendAPI(uid, result);
+              }
+            } else {
+              return await fbAPI.callSendAPI(
+                uid,
+                this.randomStr(mess.chuaCoLichThi)
+              );
+            }
+          } else {
+            return await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
+          }
       }
     } else {
       await fbAPI.callSendAPI(uid, this.randomStr(mess.notrain));
