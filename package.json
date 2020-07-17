@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node lib/app.js",
+    "start": "node product/app.js",
     "dev": "nodemon --exec babel-node src/app.js",
-    "test": "babel src --out-dir lib"
+    "test": "babel src --out-dir product"
   },
   "author": "",
   "license": "ISC",
