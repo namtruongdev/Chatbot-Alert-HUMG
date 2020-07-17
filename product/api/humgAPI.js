@@ -96,7 +96,7 @@ class Humg {
 
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getDay().toLowerCase()) {
-          subject += "\uD83D\uDCCC ".concat(i[0], " (").concat(i[1], "):\n- Ph\xF2ng ").concat(i[4], "\n- Ti\u1EBFt ").concat(i[5], " - Ti\u1EBFt ").concat(parseInt(i[6]) + parseInt(i[5]) - 1, "\n- ").concat(this.getTime(i[5]).batDau, " - ").concat(this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc, "\n- Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[7], "\n");
+          subject += "\n\n\uD83D\uDCCC ".concat(i[0], " (").concat(i[1], "):\n\n\uD83D\uDCCE Ph\xF2ng ").concat(i[4], "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i[5], " - Ti\u1EBFt ").concat(parseInt(i[6]) + parseInt(i[5]) - 1, "\n\uD83D\uDCCE ").concat(this.getTime(i[5]).batDau, " - ").concat(this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc, "\n\uD83D\uDCCE Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[7]);
         }
       }
 
@@ -147,7 +147,7 @@ class Humg {
 
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getNextDay().toLowerCase()) {
-          subject += "\uD83D\uDCCC ".concat(i[0], " (").concat(i[1], "):\n          \r - Ph\xF2ng ").concat(i[4], "\n          \r - Ti\u1EBFt ").concat(i[5], " - Ti\u1EBFt ").concat(parseInt(i[6]) + parseInt(i[5]) - 1, "\n          \r - ").concat(this.getTime(i[5]).batDau, " - ").concat(this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc, "\n          \r - Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[7], "\n          \n\n");
+          subject += "\n\n\uD83D\uDCCC ".concat(i[0], " (").concat(i[1], "):\n\n\uD83D\uDCCE Ph\xF2ng ").concat(i[4], "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i[5], " - Ti\u1EBFt ").concat(parseInt(i[6]) + parseInt(i[5]) - 1, "\n\uD83D\uDCCE ").concat(this.getTime(i[5]).batDau, " - ").concat(this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc, "\n\uD83D\uDCCE Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[7]);
         }
       }
 

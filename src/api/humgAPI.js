@@ -100,13 +100,13 @@ class Humg {
       let subject = ``;
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getDay().toLowerCase()) {
-          subject += `📌 ${i[0]} (${i[1]}):\n- Phòng ${i[4]}\n- Tiết ${
+          subject += `\n\n📌 ${i[0]} (${i[1]}):\n\n📎 Phòng ${i[4]}\n📎 Tiết ${
             i[5]
-          } - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}\n- ${
+          } - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}\n📎 ${
             this.getTime(i[5]).batDau
           } - ${
             this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc
-          }\n- Giảng viên là ${i[7]}\n`;
+          }\n📎 Giảng viên là ${i[7]}`;
         }
       }
 
@@ -154,14 +154,13 @@ class Humg {
       let subject = ``;
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getNextDay().toLowerCase()) {
-          subject += `📌 ${i[0]} (${i[1]}):
-          \r - Phòng ${i[4]}
-          \r - Tiết ${i[5]} - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}
-          \r - ${this.getTime(i[5]).batDau} - ${
+          subject += `\n\n📌 ${i[0]} (${i[1]}):\n\n📎 Phòng ${i[4]}\n📎 Tiết ${
+            i[5]
+          } - Tiết ${parseInt(i[6]) + parseInt(i[5]) - 1}\n📎 ${
+            this.getTime(i[5]).batDau
+          } - ${
             this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc
-          }
-          \r - Giảng viên là ${i[7]}
-          \n\n`;
+          }\n📎 Giảng viên là ${i[7]}`;
         }
       }
 

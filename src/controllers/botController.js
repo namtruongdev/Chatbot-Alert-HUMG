@@ -34,6 +34,12 @@ class Bot {
       await fbAPI.sendMarkSeen(uid);
       await fbAPI.sendTyping(uid);
       switch (intent.name) {
+        case 'aiChoYeu':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.aiChoYeu));
+          break;
+        case 'anUi':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.anUi));
+          break;
         case 'aoTuong':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.aoTuong));
           break;
@@ -64,17 +70,26 @@ class Bot {
         case 'chuiBay':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.chuiBay));
           break;
+        case 'chuiHau':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.chuiHau));
+          break;
         case 'chuiHauNgu':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.chuiHauNgu));
           break;
         case 'coNhoLai':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.coNhoLai));
           break;
+        case 'coThichKhong':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.coThichKhong));
+          break;
         case 'coThongTinNguoiDungKhong':
           await fbAPI.callSendAPI(
             uid,
             this.randomStr(mess.coThongTinNguoiDungKhong)
           );
+          break;
+        case 'code':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.code));
           break;
         case 'cuoi':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.cuoi));
@@ -97,6 +112,9 @@ class Bot {
         case 'dontknow':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.dontknow));
           break;
+        case 'gaHauDanhNhau':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.gaHauDanhNhau));
+          break;
         case 'gaTinh':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.gaTinh));
           break;
@@ -105,6 +123,46 @@ class Bot {
           break;
         case 'hauAnGi':
           await fbAPI.callSendAPI(uid, mess.hauAnGi);
+          break;
+        case 'hauBietGi':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauBietGi));
+          break;
+        case 'hauBietHatKhong':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauBietHatKhong));
+          await fbAPI.sendVideoAPI(
+            uid,
+            'https://res.cloudinary.com/alerthumg/video/upload/v1595000294/Watermelon_papaya..._eiriym.mp4'
+          );
+          break;
+        case 'hauBietNoiTiengAnhKhong':
+          await fbAPI.callSendAPI(
+            uid,
+            this.randomStr(mess.hauBietNoiTiengAnhKhong)
+          );
+          break;
+        case 'hauCoPhaiRobotKhong':
+          await fbAPI.callSendAPI(
+            uid,
+            this.randomStr(mess.hauCoPhaiRobotKhong)
+          );
+          break;
+        case 'hauGay':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauGay));
+          break;
+        case 'hauHocTruongNao':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauHocTruongNao));
+          break;
+        case 'hauKhoeKhong':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauKhoeKhong));
+          break;
+        case 'hauLuoi':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauLuoi));
+          break;
+        case 'hauODau':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauODau));
+          break;
+        case 'hauSayRuou':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauSayRuou));
           break;
         case 'maiHocGi':
           if (existUser) {
@@ -272,13 +330,13 @@ class Bot {
               for (let i of lichThi) {
                 const date = i.date.split('/');
                 if (parseInt(date[0]) === d.getDate()) {
-                  result += `\n📌 Môn ${i.subject}:\n- Sĩ số: ${
+                  result += `\n\n📌 Môn ${i.subject}:\n📎 Sĩ số: ${
                     i.quantum
-                  }\n- Tiết ${i.start} - Tiết ${i.end}\n- ${
+                  }\n📎 Tiết ${i.start} - Tiết ${i.end}\n📎 ${
                     humgAPI.getTime(i.start).batDau
-                  } - ${humgAPI.getTime(i.end).ketThuc}\n- Phòng ${
+                  } - ${humgAPI.getTime(i.end).ketThuc}\n📎 Phòng ${
                     i.room
-                  }\n- Hình thức thi ${i.note}\n`;
+                  }\n📎 Hình thức thi ${i.note}`;
                 }
               }
               if (result.length === 0) {
@@ -302,6 +360,8 @@ class Bot {
           } else {
             return await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
           }
+        case '':
+          break;
       }
     } else {
       await fbAPI.callSendAPI(uid, this.randomStr(mess.notrain));

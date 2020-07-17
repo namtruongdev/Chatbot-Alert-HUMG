@@ -48,6 +48,14 @@ class Bot {
       await _facebookAPI.default.sendTyping(uid);
 
       switch (intent.name) {
+        case 'aiChoYeu':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.aiChoYeu));
+          break;
+
+        case 'anUi':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.anUi));
+          break;
+
         case 'aoTuong':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.aoTuong));
           break;
@@ -88,6 +96,10 @@ class Bot {
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.chuiBay));
           break;
 
+        case 'chuiHau':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.chuiHau));
+          break;
+
         case 'chuiHauNgu':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.chuiHauNgu));
           break;
@@ -96,8 +108,16 @@ class Bot {
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.coNhoLai));
           break;
 
+        case 'coThichKhong':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.coThichKhong));
+          break;
+
         case 'coThongTinNguoiDungKhong':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.coThongTinNguoiDungKhong));
+          break;
+
+        case 'code':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.code));
           break;
 
         case 'cuoi':
@@ -128,6 +148,10 @@ class Bot {
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.dontknow));
           break;
 
+        case 'gaHauDanhNhau':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.gaHauDanhNhau));
+          break;
+
         case 'gaTinh':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.gaTinh));
           break;
@@ -138,6 +162,47 @@ class Bot {
 
         case 'hauAnGi':
           await _facebookAPI.default.callSendAPI(uid, mess.hauAnGi);
+          break;
+
+        case 'hauBietGi':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauBietGi));
+          break;
+
+        case 'hauBietHatKhong':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauBietHatKhong));
+          await _facebookAPI.default.sendVideoAPI(uid, 'https://res.cloudinary.com/alerthumg/video/upload/v1595000294/Watermelon_papaya..._eiriym.mp4');
+          break;
+
+        case 'hauBietNoiTiengAnhKhong':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauBietNoiTiengAnhKhong));
+          break;
+
+        case 'hauCoPhaiRobotKhong':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauCoPhaiRobotKhong));
+          break;
+
+        case 'hauGay':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauGay));
+          break;
+
+        case 'hauHocTruongNao':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauHocTruongNao));
+          break;
+
+        case 'hauKhoeKhong':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauKhoeKhong));
+          break;
+
+        case 'hauLuoi':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauLuoi));
+          break;
+
+        case 'hauODau':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauODau));
+          break;
+
+        case 'hauSayRuou':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauSayRuou));
           break;
 
         case 'maiHocGi':
@@ -314,7 +379,7 @@ class Bot {
                 const date = i.date.split('/');
 
                 if (parseInt(date[0]) === d.getDate()) {
-                  result += "\n\uD83D\uDCCC M\xF4n ".concat(i.subject, ":\n- S\u0129 s\u1ED1: ").concat(i.quantum, "\n- Ti\u1EBFt ").concat(i.start, " - Ti\u1EBFt ").concat(i.end, "\n- ").concat(_humgAPI.default.getTime(i.start).batDau, " - ").concat(_humgAPI.default.getTime(i.end).ketThuc, "\n- Ph\xF2ng ").concat(i.room, "\n- H\xECnh th\u1EE9c thi ").concat(i.note, "\n");
+                  result += "\n\n\uD83D\uDCCC M\xF4n ".concat(i.subject, ":\n\uD83D\uDCCE S\u0129 s\u1ED1: ").concat(i.quantum, "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i.start, " - Ti\u1EBFt ").concat(i.end, "\n\uD83D\uDCCE ").concat(_humgAPI.default.getTime(i.start).batDau, " - ").concat(_humgAPI.default.getTime(i.end).ketThuc, "\n\uD83D\uDCCE Ph\xF2ng ").concat(i.room, "\n\uD83D\uDCCE H\xECnh th\u1EE9c thi ").concat(i.note);
                 }
               }
 
@@ -331,6 +396,8 @@ class Bot {
             return await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.xemtkb));
           }
 
+        case '':
+          break;
       }
     } else {
       await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.notrain));

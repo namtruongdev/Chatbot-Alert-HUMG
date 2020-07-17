@@ -1,6 +1,13 @@
 class Text {
   constructor(name, gender = null) {
     this.gender = gender;
+    this.aiChoYeu = [
+      `🍉 thích thì Hấu iu thôi ❤`,
+      `${this.getGender().toLowerCase()} thì trả dép 🍉 về`,
+    ];
+    this.anUi = [
+      `Vâng ạ, 🍉 yêu ${this.getGender().toLowerCase()} ${name} nhất trên đời 💋`,
+    ];
     this.aoTuong = [
       `Hahaha... ${this.getGender()} ${name} đang mơ à 🤣`,
       `Dạ. Chắc vậy ${this.getGender()} ạ... 😂`,
@@ -49,6 +56,9 @@ class Text {
       `Có thể ${this.getGender()} ${name} chưa biết. Hấu 🍉 ghét nói tục lắm`,
       `Ơ... ${this.getGender()} ${name} nói thế mà cũng nói được à? Hết yêu thưn ${this.getGender()} luôn 🙄`,
     ];
+    this.chuiHau = [
+      `Này nhớ... ${this.getGender()} ${name} không được nói 🍉 như thế đâu 😓`,
+    ];
     this.camOn = [
       `Vâng ạ. Không có gì đâu ${this.getGender()} 👌`,
       `Giúp được ${this.getGender()} là 🍉 vui lắm rồi ạ`,
@@ -66,9 +76,13 @@ class Text {
       `Hấu 🍉 cũng đang trí lắm chắc không nhớ nổi đâu 😁`,
       `Tạm thời Hấu 🍉 chưa nhớ ra. Lúc nào Hấu 🍉 nhớ ra sẽ bảo ${this.getGender()} ${name} sau nha... Yêu yêu ❤`,
     ];
+    this.coThichKhong = [`🍉 cũng hơi hơi thích. Ahihi 😝`];
     this.coThongTinNguoiDungKhong = [
       `Hấu 🍉 không có đâu ${this.getGender()} 😘`,
       `Trong ❤ Hấu 🍉 có mỗi tên của ${this.getGender()} ${name}, như vậy có được coi là có không ${this.getGender()} 🥰`,
+    ];
+    this.code = [
+      `🍉 không biết lập trình đâu, ${this.getGender().toLowerCase()} ${name} nha 😎`,
     ];
     this.cuoi = [
       `Sao ${this.getGender()} ${name} cười mãi thế. Da Hấu 🍉 đen mất rồi 🤣`,
@@ -91,6 +105,9 @@ class Text {
       `Ô kê con tê tê ${this.getGender()} ${name} nha 😆`,
     ];
     this.dontknow = `Hấu 🍉 không biết luôn 😆`;
+    this.gaHauDanhNhau = [
+      `🍉 biết Muay Thái đấy nhá ${this.getGender().toLowerCase()}, em chấp nhận lời thách đấu luôn 🤩`,
+    ];
     this.dadangkyroi = [
       `${this.getGender()} ${name} đã đăng ký nhận tin trước đó rồi mà. Nếu ý của ${this.getGender()} là muốn hủy đăng ký nhận tin thì ${this.getGender()} có thể chat hoặc chọn "Hủy đăng ký" từ menu rồi gửi lại cho 🍉 nhé... Nhưng mà 🍉 sẽ buồn lắm khi ${this.getGender()} làm vậy 😥`,
     ];
@@ -130,11 +147,35 @@ class Text {
       `${this.getGender()} ${name} ăn 🍉 xong thì ai sẽ là người nhắc lịch học hàng ngày giúp ${this.getGender()} đây 🙄`,
     ];
     this.hauAnGi = `${this.getGender()} ${name} ăn gì thì Hấu 🍉 cũng ăn giống thế mà 😄`;
+    this.hauBietGi = [
+      `Hiện tại 🍉 chỉ có thể làm được những thứ sau:\n✔ Xem lịch học\n✔ Xem lịch học ngày mai\n✔ Xem lịch thi\n✔ Tâm sự\n✔ Thông báo lịch học hàng ngày`,
+    ];
+    this.hauBietHatKhong = [
+      `🍉 hát hơi bị hay đó, ${this.getGender().toLowerCase()} ${name} có muốn nghe em hát không nè 🤣`,
+    ];
+    this.hauBietNoiTiengAnhKhong = [
+      `Oát i giò nếm? ${this.getGender().toLowerCase()} thấy 🍉 hấu phát âm có chuẩn không 😜`,
+    ];
+    this.hauCoPhaiRobotKhong = [
+      `Hấu là người mà ${this.getGender().toLowerCase()}, chứ trên đời này làm gì có con Robot nào mà dễ thưn được như em chứ 😁`,
+    ];
     this.hauCoTheLamGi = [
       `🍉 là một robot xinh gái siêu cấp vô địch được Boss Dương Nam Trường tạo ra vào ngày 08/07/2020 với nhiệm vụ nhắc nhở lịch học cho các anh em HUMGer và cũng có thể tâm sự với anh em nếu cần 😘`,
       `Em tên là Hấu Hấu 🍉 gi gỉ gì gi cái gì em cũng làm được`,
       `🍉 có thể làm bất cứ điều gì miễn là ${this.getGender()} ${name} vui ❤`,
       `🍉 làm được nhiều sờ kiu lắm nha: Nhắc lịch học, tâm sự, tham quan trai xinh gái đẹp HUMG, xem điểm thi, xem lịch thi, xem điểm TB tích lũy, dự báo thời tiết, tìm info nam thanh nữ tú HUMG... vân vân và mây mây. Nhưng phải 1 vài bữa nữa 🍉 mới được dạy mấy skill đó 😆`,
+    ];
+    this.hauGay = [`Ơ... 🍉 là con gái mà, làm sao mà gay được chớ 😋`];
+    this.hauHocTruongNao = [
+      `Tất nhiên là 🍉 học trường Đại học Mỏ - Địa chất Hà Nội rồi ❤`,
+    ];
+    this.hauKhoeKhong = [
+      `Dạ. 🍉 cảm ơn ${this.getGender().toLowerCase()} đã hỏi thăm ạ. Em vẫn ổn 😢`,
+    ];
+    this.hauLuoi = [`Xí... 🍉 hơi bị chăm đấy nhé 🙃`];
+    this.hauODau = ['Dạ. 🍉 ở Việt Nam ạ, anh em mình cùng quê mà 😍'];
+    this.hauSayRuou = [
+      `Haha, chăc vậy thật ${this.getGender().toLowerCase()} ạ. 🍉 thấy người cứ nâng nâng 🎈`,
     ];
     this.huyDangKyRoiMa = [
       `${this.getGender()} ${name} đã hủy đăng ký rồi mà, hủy gì mà hủy lắm vậy. ${this.getGender()} hết thương 🍉 rồi à?`,
@@ -146,13 +187,19 @@ class Text {
       `${this.getGender()} ${name} đã đăng ký cái cái gì đâu mà đòi hủy vậy. Hic 😥`,
     ];
     this.notrain = [
-      `Xin lỗi ${this.getGender()} ${name}, Hấu 🍉 chưa được dạy để trả lời câu này. Hiện tại em chỉ có thể làm được những thứ sau:\n✔ Xem lịch học\n✔ Xem lịch học ngày mai\n✔ Xem lịch thi\n✔ Tâm sự\n✔ Thông báo lịch học hàng ngày`,
       // `Xin lỗi ${this.getGender()} ${name} nhiều lắm. Hấu Hấu 🍉 còn nhỏ, chưa được dạy nhiều nên không biết trả lời câu này như nào 😥`,
       // 'Câu này hình như em chưa được dạy. Ahihi 😁',
-      // `Ui chu choa ${this.getGender()} ${name} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
-      // `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣`,
-      // `Nãy giờ nói chuyện với ${this.getGender()} ${name}, 🍉 say quá nên không biết trả lời làm sao`,
-      // `Câu này để lúc khác 🍉 trả lời ${this.getGender()} ${name} được không? 🍉 quên bài rồi 😃`,
+      `Ui chu choa ${this.getGender()} ${name} ơi, tự nhiên mắt Hấu 🍉 mờ quá không đọc được chữ 🙄`,
+      `Câu này khó quá, 🍉 bỏ qua được không ${this.getGender()} ${name} 🤣`,
+      `Nãy giờ nói chuyện với ${this.getGender()} ${name}, 🍉 say quá nên không biết trả lời làm sao`,
+      `Câu này để lúc khác 🍉 trả lời ${this.getGender()} ${name} được không? 🍉 quên bài rồi 😃`,
+      `Không được rồi! 🍉 phải đi mua trà sữa rồi, lát em về thì em trả lời lại ${this.getGender().toLowerCase()} sau nhé 😃`,
+      `Bao giờ Việt Nam vô địch Wolrdcup, em sẽ trả lời câu này 😁`,
+      `Để em một ít thời gian để suy nghĩ và cân nhắc, sau đó sẽ trả lời ${this.getGender().toLowerCase()} nhé 😅`,
+      `Cho 🍉 thời gian suy nghĩ, vì với em ${this.getGender().toLowerCase()} là một phần rất quan trọng`,
+      `Hihi, Để 🍉 suy nghĩ đã nhé. Có gì tối mai em nhắn tin cho 😝`,
+      `🍉 không giỏi việc này, ${this.getGender().toLowerCase()} nhờ chị Google thử xem?`,
+      `Tự nhiên 🍉 bị đau bụng… nên không trả lời được ${this.getGender().toLowerCase()} rồi 😓`,
     ];
     this.removeSub = [
       `Hủy thành công! Khi nào nhớ 🍉 thì hãy đăng ký nhận tin lại nha 😭`,
@@ -184,8 +231,8 @@ class Text {
     this.khongKhaDung = `Hiện tại 🍉 chưa làm được cái này. Nhưng ${this.getGender()} ${name} ơi, ${this.getGender()} cứ yên tâm, Boss của 🍉 siêu cấp lắm, một vài hôm nữa em sẽ làm được ngay. Hãy tin 🍉`;
   }
   getGender() {
-    if (this.gender === 'male') return 'anh';
-    return 'chị';
+    if (this.gender === 'male') return 'Anh';
+    return 'Chị';
   }
 }
 
