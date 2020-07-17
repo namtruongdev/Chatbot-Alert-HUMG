@@ -2,7 +2,7 @@
   "name": "botchat-humg",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "product/app.js",
   "scripts": {
     "start": "node product/app.js",
     "dev": "nodemon --exec babel-node src/app.js",
