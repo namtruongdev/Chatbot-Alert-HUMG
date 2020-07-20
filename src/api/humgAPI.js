@@ -212,19 +212,22 @@ class Humg {
   async getPoint(msv) {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: false,
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1366, height: 768 });
+    await page.setViewport({ width: 1000, height: 768 });
     await page.goto(
       `https://daotao.humg.edu.vn/Default.aspx?page=xemdiemthi&id=${msv}`
     );
-    await page.click('#ctl00_ContentPlaceHolder1_ctl00_lnkChangeview2');
+    await page.click(`#ctl00_ContentPlaceHolder1_ctl00_lnkChangeview2`);
     await page.waitForNavigation();
-    await page.mouse.move(0, 0);
-    await page.waitForNavigation();
-    await page.mouse.down();
-    await page.screenshot({ path: 'screenshot.png' });
+    await page.evaluate(() => {
+      let _el = document
+        .querySelector(`.view-table tr:last-child`)
+        .scrollIntoView();
+    });
+    await page.screenshot({ path: 'public/screenshot.png' });
+    await browser.close();
+    return 'ok';
   }
 }
 

@@ -10,6 +10,7 @@ const initWebRoutes = (app) => {
   router.post('/webhook', webhookController.postWebhook);
 
   app.use('/', router);
+  app.use(express.static('public'));
 };
 
 module.exports = initWebRoutes;

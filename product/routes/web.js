@@ -15,6 +15,7 @@ const initWebRoutes = app => {
   router.get('/webhook', _webhookController.default.getWebhook);
   router.post('/webhook', _webhookController.default.postWebhook);
   app.use('/', router);
+  app.use(_express.default.static('public'));
 };
 
 module.exports = initWebRoutes;

@@ -7,7 +7,7 @@ import cron from './controllers/cronController';
 // import fbAPI from './api/facebookAPI';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
-// import HUMGAPI from './api/humgAPI';
+import HUMGAPI from './api/humgAPI';
 
 const app = express();
 const port = process.env.PORT_LOCAL || process.env.PORT;

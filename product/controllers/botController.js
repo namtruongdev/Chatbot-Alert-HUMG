@@ -396,7 +396,21 @@ class Bot {
             return await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.xemtkb));
           }
 
-        case '':
+        case 'xemDiemThi':
+          if (existUser) {
+            await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.dangLayDiem));
+            const msv = existUser.msv;
+            const diemThi = await _humgAPI.default.getPoint(msv);
+
+            if (diemThi) {
+              await _facebookAPI.default.sendImageAPI(uid, "".concat(process.env.WEB_URL, "screenshot.png"));
+            } else {
+              return await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.err));
+            }
+          } else {
+            return await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.xemtkb));
+          }
+
           break;
       }
     } else {

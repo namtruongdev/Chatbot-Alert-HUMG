@@ -126,6 +126,9 @@ class Text {
     this.dangLayLichThi = [
       `Hấu 🍉 đang lấy lịch thi... ${this.getGender()} ${name} chờ xíu nha 😘`,
     ];
+    this.dangLayDiem = [
+      `🍉 đang lấy điểm thi... ${this.getGender()} ${name} chờ xíu nha 😎`,
+    ];
     this.gaTinh = [
       `Yêu luôn chứ Hấu 🍉 có ngán gì đâu chớ 😘`,
       `Chỉ cần ${this.getGender()} ${name} nói yêu. Hấu 🍉 sẽ bám theo ${this.getGender()} suốt đời 😍`,
@@ -229,6 +232,9 @@ class Text {
       `Yeah... 🍉 cảm ơn ${this.getGender()} ${name} đã đăng ký nhận tin nhé. Từ giờ trở đi cứ 5h sáng hàng ngày 🍉 lại được nhắn tin cho ${this.getGender()} rồi 💋`,
     ];
     this.khongKhaDung = `Hiện tại 🍉 chưa làm được cái này. Nhưng ${this.getGender()} ${name} ơi, ${this.getGender()} cứ yên tâm, Boss của 🍉 siêu cấp lắm, một vài hôm nữa em sẽ làm được ngay. Hãy tin 🍉`;
+    this.err = [
+      `Huhu... 🍉 xin lỗi ${this.getGender()} ${name} nhé. Có vẻ như trang datao đang lỗi hay sao ý nên em không lấy được điểm về. ${this.getGender()} thử lại phát nữa xem sao 🤣`,
+    ];
   }
   getGender() {
     if (this.gender === 'male') return 'Anh';

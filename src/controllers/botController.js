@@ -360,7 +360,22 @@ class Bot {
           } else {
             return await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
           }
-        case '':
+        case 'xemDiemThi':
+          if (existUser) {
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayDiem));
+            const msv = existUser.msv;
+            const diemThi = await humgAPI.getPoint(msv);
+            if (diemThi) {
+              await fbAPI.sendImageAPI(
+                uid,
+                `${process.env.WEB_URL}screenshot.png`
+              );
+            } else {
+              return await fbAPI.callSendAPI(uid, this.randomStr(mess.err));
+            }
+          } else {
+            return await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
+          }
           break;
       }
     } else {
