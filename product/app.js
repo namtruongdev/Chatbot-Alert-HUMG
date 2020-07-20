@@ -10,11 +10,12 @@ var _web = _interopRequireDefault(require("./routes/web"));
 
 var _cronController = _interopRequireDefault(require("./controllers/cronController"));
 
+var _facebookAPI = _interopRequireDefault(require("./api/facebookAPI"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
 
-// import fbAPI from './api/facebookAPI';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
@@ -47,8 +48,8 @@ app.use(_bodyParser.default.urlencoded({
   // await NtvForex.getForexNews();
   // await HUMGAPI.getPoint(1721050381);
   // await fbAPI.getStarted();
-  // await fbAPI.persistentMenu();
-  // const allMemberSub = await DB.getSub();
+
+  await _facebookAPI.default.persistentMenu(); // const allMemberSub = await DB.getSub();
   // for (let i of allMemberSub) {
   //   let uid = i.uid;
   //   await fbAPI.callSendAPIWithTag(

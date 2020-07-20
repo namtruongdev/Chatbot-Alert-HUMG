@@ -262,9 +262,9 @@ class Bot {
 
         case 'xemtkb':
           if (existUser) {
+            await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             const msv = existUser.msv;
             const tkb = await _humgAPI.default.getSchedule(msv, name, uid);
-            await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.danglaytkb));
 
             if (tkb.length > 72) {
               await _facebookAPI.default.callSendAPI(uid, "H\xF4m nay ".concat(_humgAPI.default.getFullDate(), ", ").concat(name, " ph\u1EA3i h\u1ECDc:"));

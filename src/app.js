@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import initWebRoute from './routes/web';
 import cron from './controllers/cronController';
-// import fbAPI from './api/facebookAPI';
+import fbAPI from './api/facebookAPI';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
@@ -38,7 +38,7 @@ initWebRoute(app);
   // await NtvForex.getForexNews();
   // await HUMGAPI.getPoint(1721050381);
   // await fbAPI.getStarted();
-  // await fbAPI.persistentMenu();
+  await fbAPI.persistentMenu();
   // const allMemberSub = await DB.getSub();
   // for (let i of allMemberSub) {
   //   let uid = i.uid;
