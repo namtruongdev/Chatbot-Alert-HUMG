@@ -431,10 +431,9 @@ class Bot {
         break;
       case 'Xem lịch học 📅':
         if (existUser) {
-          const msv = existUser.msv;
-
-          const tkb = await humgAPI.getSchedule(msv, name, uid);
           await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
+          const msv = existUser.msv;
+          const tkb = await humgAPI.getSchedule(msv, name, uid);
           if (tkb.length > 72) {
             await fbAPI.callSendAPI(
               uid,
