@@ -530,6 +530,41 @@ class Bot {
       case '🍉 có thể làm được gì?':
         await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauCoTheLamGi));
         break;
+
+      case 'danh sách tính năng':
+        const replies = [{
+          content_type: 'text',
+          title: 'Mai học gì?',
+          payload: 'maiHocGi',
+          image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276010/icons8-school-backpack-48_aotytn.png'
+        }, {
+          content_type: 'text',
+          title: 'Tin tức?',
+          payload: 'tinTuc',
+          image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276474/icons8-news-50_la5oo7.png'
+        }, {
+          content_type: 'text',
+          title: 'Tâm sự?',
+          payload: 'tamSu',
+          image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276575/icons8-very-popular-topic-64_zjkfym.png'
+        }, {
+          content_type: 'text',
+          title: 'Xem điểm thi?',
+          payload: 'xemDiemThi',
+          image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276214/icons8-square-number-48_hrlxeb.png'
+        }, {
+          content_type: 'text',
+          title: 'Hủy nhận tin',
+          payload: 'huyNhanTin',
+          image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276650/icons8-calendar-delete-64_n2jwtv.png'
+        }, {
+          content_type: 'text',
+          title: 'Xem lịch thi?',
+          payload: 'xemLichThi',
+          image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276360/icons8-test-passed-64_hrolpn.png'
+        }];
+        await _facebookAPI.default.quickReplies(uid, this.randomStr(mess.luaChonTinhNang), replies);
+        break;
     }
   }
 

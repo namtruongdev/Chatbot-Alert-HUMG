@@ -143,6 +143,9 @@ class Text {
     this.khongPhaiThi = [
       `Hôm nay ${this.getGender()} ${name} không phải thi môn nào ạ 😃`,
     ];
+    this.luaChonTinhNang = [
+      `🍉 xin mời ${this.getGender().toLowerCase()} ${name} lựa chọn 1 trong các tính năng bên dưới:`,
+    ];
     this.hauAnComChua = [
       `Ui giời. Dăm 3 cái hột cơm ý mà ${this.getGender()}, nhắn tin với ${this.getGender()} ${name} quan trọng hơn ❤`,
       `Hấu 🍉 đang giảm cân ${this.getGender()} ${name} ơi, hôm nay em không ăn cơm 🥗`,

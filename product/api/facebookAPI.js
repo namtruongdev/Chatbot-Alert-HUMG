@@ -166,8 +166,8 @@ class facebookAPI {
           payload: 'Đăng ký nhận tin ⏰'
         }, {
           type: 'postback',
-          title: 'Hủy nhận tin 😭',
-          payload: 'Hủy nhận tin 😭'
+          title: 'Danh sách tính năng 📝',
+          payload: 'danh sách tính năng'
         }]
       }]
     };
@@ -268,6 +268,35 @@ class facebookAPI {
             is_reusable: true
           }
         }
+      }
+    };
+    return await (0, _axios.default)({
+      method: 'POST',
+      url: 'https://graph.facebook.com/v7.0/me/messages',
+      params: {
+        access_token: this.token
+      },
+      data: data
+    }).catch(error => {
+      if (error.response) {
+        console.log('PSID: ', uid);
+        console.log('Status code: ', error.response.status);
+        console.log('Response: ', error.response.data);
+      } else if (error.request) {
+        console.log('Request: ', error.request);
+      }
+    });
+  }
+
+  async quickReplies(uid, message, replies) {
+    let data = {
+      recipient: {
+        id: uid
+      },
+      messaging_type: 'RESPONSE',
+      message: {
+        text: message,
+        quick_replies: replies
       }
     };
     return await (0, _axios.default)({

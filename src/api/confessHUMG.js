@@ -50,8 +50,9 @@ class Confess {
             .outerText.substr(0, 120);
           uri = 'https://www.facebook.com' + url[i].getAttribute('href');
           uri = uri.split('?')[0];
-          if (content[i].getElementsByTagName('img')[1]) {
-            img = content[i].getElementsByTagName('img')[1].dataset.src;
+          if (content[i].getElementsByTagName('img')) {
+            const len = content[i].getElementsByTagName('img').length - 1;
+            img = content[i].getElementsByTagName('img')[len].dataset.src;
           }
           result.push({
             post: string,
