@@ -50,9 +50,22 @@ class Confess {
             .outerText.substr(0, 120);
           uri = 'https://www.facebook.com' + url[i].getAttribute('href');
           uri = uri.split('?')[0];
-          if (content[i].getElementsByTagName('img')) {
-            const len = content[i].getElementsByTagName('img').length - 1;
-            img = content[i].getElementsByTagName('img')[len].dataset.src;
+          if (content[i].querySelectorAll('a[rel="theater"]')) {
+            const len =
+              content[i].querySelectorAll('a[rel="theater"]').length - 1;
+
+            if (content[i].querySelectorAll('a[rel="theater"]')[len]) {
+              if (
+                content[i].querySelectorAll('a[rel="theater"]')[len].dataset
+                  .ploi !== undefined
+              ) {
+                img = content[i].querySelectorAll('a[rel="theater"]')[len]
+                  .dataset.ploi;
+              } else {
+                const len2 = content[i].getElementsByTagName('img').length - 1;
+                img = content[i].getElementsByTagName('img')[len2].dataset.src;
+              }
+            }
           }
           result.push({
             post: string,

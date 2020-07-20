@@ -36,7 +36,7 @@ class Job {
             await _facebookAPI.default.callSendAPIWithTag(uid, "Nh\u1EDB \u0111i h\u1ECDc \u0111\u1EA7y \u0111\u1EE7 v\xE0 \u0111\xFAng gi\u1EDD nha... Y\xEAu ".concat(name, " 3000 \u2764"));
           } else {
             await _facebookAPI.default.callSendAPIWithTag(uid, tkb);
-            await _facebookAPI.default.callSendAPIWithTag(uid, "Tuy \u0111\u01B0\u1EE3c ngh\u1EC9 h\u1ECDc nh\u01B0ng v\u1EABn ph\u1EA3i c\u1EADp nh\u1EADt tin t\u1EE9c nha ".concat(name, "... H\xE3y \u0111i c\xF9ng \uD83C\uDF49 l\u01B0\u1EE3n 1 v\xF2ng quanh M\u1ECF xem c\xF3 nh\u1EEFng tin g\xEC HOT nh\xE9 \uD83D\uDE1D"));
+            await _facebookAPI.default.callSendAPIWithTag(uid, "Tuy \u0111\u01B0\u1EE3c ngh\u1EC9 h\u1ECDc nh\u01B0ng v\u1EABn ph\u1EA3i c\u1EADp nh\u1EADt tin t\u1EE9c nha ".concat(name, "... H\xE3y c\xF9ng \uD83C\uDF49 l\u01B0\u1EE3n 1 v\xF2ng quanh M\u1ECF xem c\xF3 nh\u1EEFng tin g\xEC HOT nh\xE9 \uD83D\uDE1D"));
             const page = ['https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal'];
             let dem = 0;
 

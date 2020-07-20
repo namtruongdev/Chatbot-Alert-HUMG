@@ -34,7 +34,7 @@ class Job {
               await fbAPI.callSendAPIWithTag(uid, tkb);
               await fbAPI.callSendAPIWithTag(
                 uid,
-                `Tuy được nghỉ học nhưng vẫn phải cập nhật tin tức nha ${name}... Hãy đi cùng 🍉 lượn 1 vòng quanh Mỏ xem có những tin gì HOT nhé 😝`
+                `Tuy được nghỉ học nhưng vẫn phải cập nhật tin tức nha ${name}... Hãy cùng 🍉 lượn 1 vòng quanh Mỏ xem có những tin gì HOT nhé 😝`
               );
               const page = [
                 'https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal',
