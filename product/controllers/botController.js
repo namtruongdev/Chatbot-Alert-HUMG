@@ -417,15 +417,27 @@ class Bot {
 
         case 'xemTinTuc':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
-          const page = ['https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal'];
+          const page = ['https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal'];
+          let dem = 0;
 
           for (let i of page) {
             const news = await _confessHUMG.default.getStatus(i);
-            await _facebookAPI.default.callSendAPI(uid, news.post);
 
-            if (news.image) {
-              await _facebookAPI.default.sendImageAPI(uid, news.image);
+            if (news.length !== 0) {
+              for (let i of news) {
+                await _facebookAPI.default.callSendAPI(uid, i.post + '...' + "\n\n\uD83D\uDCCE B\xE0i vi\u1EBFt g\u1ED1c: ".concat(i.url));
+
+                if (i.image) {
+                  await _facebookAPI.default.sendImageAPI(uid, i.image);
+                }
+              }
+            } else {
+              dem++;
             }
+          }
+
+          if (dem === page.length) {
+            await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 c\xE1i tin h\xF3t hay c\xE1i drama n\xE0o \u0111\u1EC3 m\xE0 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
           }
 
           break;

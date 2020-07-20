@@ -381,16 +381,34 @@ class Bot {
         case 'xemTinTuc':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
           const page = [
-            'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal',
+            'https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal',
             'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal',
             'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal',
+            'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal',
+            'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal',
           ];
+          let dem = 0;
           for (let i of page) {
             const news = await confess.getStatus(i);
-            await fbAPI.callSendAPI(uid, news.post);
-            if (news.image) {
-              await fbAPI.sendImageAPI(uid, news.image);
+            if (news.length !== 0) {
+              for (let i of news) {
+                await fbAPI.callSendAPI(
+                  uid,
+                  i.post + '...' + `\n\n📎 Bài viết gốc: ${i.url}`
+                );
+                if (i.image) {
+                  await fbAPI.sendImageAPI(uid, i.image);
+                }
+              }
+            } else {
+              dem++;
             }
+          }
+          if (dem === page.length) {
+            await fbAPI.callSendAPIWithTag(
+              uid,
+              `Chán trường thật sự 😅. Hôm nay không có cái tin hót hay cái drama nào để mà hóng cả ${name} ơi!`
+            );
           }
           break;
       }

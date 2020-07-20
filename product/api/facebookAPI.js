@@ -233,7 +233,9 @@ class facebookAPI {
             is_reusable: true
           }
         }
-      }
+      },
+      messaging_type: 'MESSAGE_TAG',
+      tag: 'CONFIRMED_EVENT_UPDATE'
     };
     return await (0, _axios.default)({
       method: 'POST',

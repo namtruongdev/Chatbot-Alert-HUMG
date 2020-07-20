@@ -40,40 +40,34 @@ class Confess {
     await page.goto(url);
     const data = await page.evaluate(() => {
       let content = document.querySelectorAll('div[data-visualcompletion="ignore-dynamic"]');
-      let img, string;
+      let url = document.querySelectorAll('div[data-testid="story-subtitle"] a[href^="/"]');
+      let img, string, time, uri;
+      const result = [];
+      const d = Date.now();
+      url = [...url];
       content = [...content];
 
-      if (parseInt(content[0].getElementsByTagName('abbr')[0].dataset.utime) > parseInt(content[1].getElementsByTagName('abbr')[0].dataset.utime)) {
-        if (content[0].getElementsByTagName('img')[1]) {
-          img = content[0].getElementsByTagName('img')[1].dataset.src;
+      for (i = 0; i < 3; i++) {
+        time = parseInt(content[i].getElementsByTagName('abbr')[0].dataset.utime);
+
+        if (d / 1000 - time <= 86400) {
+          string = content[i].getElementsByClassName('userContent')[0].outerText.substr(0, 120);
+          uri = 'https://www.facebook.com' + url[i].getAttribute('href');
+          uri = uri.split('?')[0];
+
+          if (content[i].getElementsByTagName('img')[1]) {
+            img = content[i].getElementsByTagName('img')[1].dataset.src;
+          }
+
+          result.push({
+            post: string,
+            url: uri,
+            image: img
+          });
         }
-
-        string = content[0].getElementsByClassName('userContent')[0].outerText;
-
-        if (string.length > 1000) {
-          string = string.substr(0, 1000);
-        }
-
-        return {
-          post: string,
-          image: img
-        };
-      } else {
-        if (content[1].getElementsByTagName('img')[1]) {
-          img = content[1].getElementsByTagName('img')[1].dataset.src;
-        }
-
-        string = content[1].getElementsByClassName('userContent')[0].outerText;
-
-        if (string.length > 1000) {
-          string = string.substr(0, 1000);
-        }
-
-        return {
-          post: string,
-          image: img
-        };
       }
+
+      return result;
     });
     await browser.close();
     return data;
