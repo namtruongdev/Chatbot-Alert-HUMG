@@ -12,6 +12,8 @@ var _users = _interopRequireDefault(require("../models/users"));
 
 var _constants = _interopRequireDefault(require("../constants"));
 
+var _confessHUMG = _interopRequireDefault(require("../api/confessHUMG"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
@@ -409,6 +411,21 @@ class Bot {
             }
           } else {
             return await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.xemtkb));
+          }
+
+          break;
+
+        case 'xemTinTuc':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
+          const page = ['https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal'];
+
+          for (let i of page) {
+            const news = await _confessHUMG.default.getStatus(i);
+            await _facebookAPI.default.callSendAPI(uid, news.post);
+
+            if (news.image) {
+              await _facebookAPI.default.sendImageAPI(uid, news.image);
+            }
           }
 
           break;

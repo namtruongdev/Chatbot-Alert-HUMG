@@ -129,6 +129,9 @@ class Text {
     this.dangLayDiem = [
       `🍉 đang lấy điểm thi... ${this.getGender()} ${name} chờ xíu nha 😎`,
     ];
+    this.dangLayTinTuc = [
+      `${this.getGender()} ${name} chờ 🍉 xíu nha... Em đang chạy đi lấy tin về cho ${this.getGender().toLowerCase()} đây 🥵`,
+    ];
     this.gaTinh = [
       `Yêu luôn chứ Hấu 🍉 có ngán gì đâu chớ 😘`,
       `Chỉ cần ${this.getGender()} ${name} nói yêu. Hấu 🍉 sẽ bám theo ${this.getGender()} suốt đời 😍`,

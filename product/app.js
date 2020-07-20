@@ -10,12 +10,15 @@ var _web = _interopRequireDefault(require("./routes/web"));
 
 var _cronController = _interopRequireDefault(require("./controllers/cronController"));
 
-var _humgAPI = _interopRequireDefault(require("./api/humgAPI"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
 
+// import fbAPI from './api/facebookAPI';
+// import DB from './controllers/dbController';
+// import NtvForex from './api/ntvforex';
+// import HUMGAPI from './api/humgAPI';
+// import confess from './api/confessHUMG';
 const app = (0, _express.default)();
 const port = process.env.PORT_LOCAL || process.env.PORT;
 
@@ -37,7 +40,11 @@ app.use(_bodyParser.default.urlencoded({
 (0, _web.default)(app);
 
 (async () => {
-  await _cronController.default.guiLichHoc(); // await NtvForex.getForexNews();
+  await _cronController.default.guiLichHoc(); // const test = await confess.getStatus(
+  //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
+  // );
+  // console.log(test);
+  // await NtvForex.getForexNews();
   // await HUMGAPI.getPoint(1721050381);
   // await fbAPI.getStarted();
   // await fbAPI.persistentMenu();

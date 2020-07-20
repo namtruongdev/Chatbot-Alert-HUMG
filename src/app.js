@@ -7,7 +7,8 @@ import cron from './controllers/cronController';
 // import fbAPI from './api/facebookAPI';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
-import HUMGAPI from './api/humgAPI';
+// import HUMGAPI from './api/humgAPI';
+// import confess from './api/confessHUMG';
 
 const app = express();
 const port = process.env.PORT_LOCAL || process.env.PORT;
@@ -30,6 +31,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 initWebRoute(app);
 (async () => {
   await cron.guiLichHoc();
+  // const test = await confess.getStatus(
+  //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
+  // );
+  // console.log(test);
   // await NtvForex.getForexNews();
   // await HUMGAPI.getPoint(1721050381);
   // await fbAPI.getStarted();

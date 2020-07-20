@@ -5,6 +5,7 @@ import NtvForex from '../api/ntvforex';
 import DB from '../controllers/dbController';
 import User from '../models/users';
 import text from '../constants';
+import confess from '../api/confessHUMG';
 
 class Bot {
   constructor() {}
@@ -375,6 +376,21 @@ class Bot {
             }
           } else {
             return await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
+          }
+          break;
+        case 'xemTinTuc':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
+          const page = [
+            'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal',
+            'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal',
+            'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal',
+          ];
+          for (let i of page) {
+            const news = await confess.getStatus(i);
+            await fbAPI.callSendAPI(uid, news.post);
+            if (news.image) {
+              await fbAPI.sendImageAPI(uid, news.image);
+            }
           }
           break;
       }
