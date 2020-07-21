@@ -293,9 +293,6 @@ class Bot {
         case 'test':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.test));
           break;
-        case 'xemDiemTichLuy':
-          await fbAPI.callSendAPI(uid, mess.khongKhaDung);
-          break;
         case 'xemHocPhi':
           await fbAPI.callSendAPI(uid, mess.khongKhaDung);
           break;
@@ -387,24 +384,40 @@ class Bot {
             'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal',
             'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal',
           ];
-          let dem = 0;
+          const elements = [];
           for (let i of page) {
             const news = await confess.getStatus(i);
             if (news.length !== 0) {
               for (let i of news) {
-                await fbAPI.callSendAPI(
-                  uid,
-                  i.post + '...' + `\n\n📎 Bài viết gốc: ${i.url}`
-                );
-                if (i.image) {
-                  await fbAPI.sendImageAPI(uid, i.image);
+                let imgUrl = i.image
+                  ? i.image
+                  : 'https://res.cloudinary.com/alerthumg/image/upload/v1595312973/45783517_2009013512520434_753951418271924224_n_bin8dy.png';
+                if (elements.length < 10) {
+                  elements.push({
+                    title: i.post,
+                    image_url: imgUrl,
+                    subtitle: 'Phóng viên Hấu 🍉',
+                    default_action: {
+                      type: 'web_url',
+                      url: i.url,
+                    },
+                    buttons: [
+                      {
+                        type: 'web_url',
+                        url: i.url,
+                        title: 'Xem Thêm',
+                      },
+                    ],
+                  });
+                } else {
+                  break;
                 }
               }
-            } else {
-              dem++;
             }
           }
-          if (dem === page.length) {
+          if (elements.length !== 0) {
+            await fbAPI.sendTemplateGeneric(uid, elements);
+          } else {
             await fbAPI.callSendAPIWithTag(
               uid,
               `Chán trường thật sự 😅. Hôm nay không có cái tin hót hay cái drama nào để mà hóng cả ${name} ơi!`

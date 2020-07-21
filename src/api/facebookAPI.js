@@ -269,6 +269,36 @@ class facebookAPI {
       }
     });
   }
+  async sendTemplateGeneric(uid, elements) {
+    let data = {
+      recipient: {
+        id: uid,
+      },
+      message: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: elements,
+          },
+        },
+      },
+    };
+    return await axios({
+      method: 'POST',
+      url: 'https://graph.facebook.com/v7.0/me/messages',
+      params: { access_token: this.token },
+      data: data,
+    }).catch((error) => {
+      if (error.response) {
+        console.log('PSID: ', uid);
+        console.log('Status code: ', error.response.status);
+        console.log('Response: ', error.response.data);
+      } else if (error.request) {
+        console.log('Request: ', error.request);
+      }
+    });
+  }
 }
 
 module.exports = new facebookAPI();

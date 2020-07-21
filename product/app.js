@@ -44,12 +44,19 @@ app.use(_bodyParser.default.urlencoded({
   await _cronController.default.guiLichHoc(); // const test = await confess.getStatus(
   //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
   // );
+  // await fbAPI.sendTemplateGeneric(
+  //   4605487302798502,
+  //   `Thấy em liền thả tym
+  // Penhouse ở phố Viên...`,
+  //   'https://scontent.fhan2-2.fna.fbcdn.net/v/t1.0-9/109261485_1659705807513253_3777689744595877630_n.jpg?_nc_cat=111&_nc_sid=8024bb&_nc_ohc=9VPWeQbAP5gAX90HWFy&_nc_ht=scontent.fhan2-2.fna&oh=061844597631b6c3748faf147ad260ce&oe=5F3C1B86',
+  //   'https://www.facebook.com/humg.confession/photos/a.163861677097681/1659705804179920'
+  // );
   // console.log(test);
   // await NtvForex.getForexNews();
   // await HUMGAPI.getPoint(1721050381);
   // await fbAPI.getStarted();
-
-  await _facebookAPI.default.persistentMenu(); // const allMemberSub = await DB.getSub();
+  // await fbAPI.persistentMenu();
+  // const allMemberSub = await DB.getSub();
   // for (let i of allMemberSub) {
   //   let uid = i.uid;
   //   await fbAPI.callSendAPIWithTag(
