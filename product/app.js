@@ -19,6 +19,7 @@ require('dotenv').config();
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
 // import confess from './api/confessHUMG';
+// import Wiki from './api/wikiAPI';
 const app = (0, _express.default)();
 const port = process.env.PORT_LOCAL || process.env.PORT;
 

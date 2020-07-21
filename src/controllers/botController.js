@@ -5,7 +5,8 @@ import NtvForex from '../api/ntvforex';
 import DB from '../controllers/dbController';
 import User from '../models/users';
 import text from '../constants';
-import confess from '../api/confessHUMG';
+import Wiki from '../api/wikiAPI';
+// import confess from '../api/confessHUMG';
 
 class Bot {
   constructor() {}
@@ -167,9 +168,9 @@ class Bot {
           break;
         case 'maiHocGi':
           if (existUser) {
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             const msv = existUser.msv;
             const tkb = await humgAPI.getScheduleNextDay(msv, name);
-            await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             if (tkb.length > 72) {
               await fbAPI.callSendAPI(
                 uid,
@@ -278,7 +279,7 @@ class Bot {
                 );
             }
           } else {
-            await fbAPI.callSendAPI(uid, this.randomStr(this.notInfo));
+            await fbAPI.callSendAPI(uid, this.randomStr(mess.daHuyDangKyRoi));
           }
           break;
         case 'hauAnDuocKhong':
@@ -386,6 +387,10 @@ class Bot {
               `Chán trường thật sự 😅. Hôm nay không có bất cứ tin nào để hóng cả ${name} ơi!`
             );
           }
+          break;
+        case 'wiki':
+          let res = await Wiki.query(encodeURI(`${message.text}`));
+          await fbAPI.callSendAPI(uid, res + ` 😎`);
           break;
       }
     } else {

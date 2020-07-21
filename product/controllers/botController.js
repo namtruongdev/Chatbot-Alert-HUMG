@@ -12,12 +12,13 @@ var _users = _interopRequireDefault(require("../models/users"));
 
 var _constants = _interopRequireDefault(require("../constants"));
 
-var _confessHUMG = _interopRequireDefault(require("../api/confessHUMG"));
+var _wikiAPI = _interopRequireDefault(require("../api/wikiAPI"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
 
+// import confess from '../api/confessHUMG';
 class Bot {
   constructor() {}
 
@@ -209,9 +210,9 @@ class Bot {
 
         case 'maiHocGi':
           if (existUser) {
+            await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             const msv = existUser.msv;
             const tkb = await _humgAPI.default.getScheduleNextDay(msv, name);
-            await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.danglaytkb));
 
             if (tkb.length > 72) {
               await _facebookAPI.default.callSendAPI(uid, "Ng\xE0y mai ".concat(_humgAPI.default.getFullNextDate(), ", ").concat(name, " ph\u1EA3i h\u1ECDc:"));
@@ -317,7 +318,7 @@ class Bot {
                 await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.daHuyDangKyRoi));
             }
           } else {
-            await _facebookAPI.default.callSendAPI(uid, this.randomStr(this.notInfo));
+            await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.daHuyDangKyRoi));
           }
 
           break;
@@ -421,6 +422,11 @@ class Bot {
             await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 b\u1EA5t c\u1EE9 tin n\xE0o \u0111\u1EC3 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
           }
 
+          break;
+
+        case 'wiki':
+          let res = await _wikiAPI.default.query(encodeURI("".concat(message.text)));
+          await _facebookAPI.default.callSendAPI(uid, res + " \uD83D\uDE0E");
           break;
       }
     } else {

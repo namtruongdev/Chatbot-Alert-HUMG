@@ -9,6 +9,7 @@ import cron from './controllers/cronController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
 // import confess from './api/confessHUMG';
+// import Wiki from './api/wikiAPI';
 
 const app = express();
 const port = process.env.PORT_LOCAL || process.env.PORT;
@@ -32,6 +33,7 @@ initWebRoute(app);
 (async () => {
   cron.guiLichHoc();
   cron.cronNews();
+
   // const test = await confess.getStatus(
   //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
   // );
