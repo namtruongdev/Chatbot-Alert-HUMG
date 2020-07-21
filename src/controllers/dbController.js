@@ -1,4 +1,5 @@
 import User from '../models/users';
+import News from '../models/news';
 
 class DB {
   constructor() {}
@@ -27,6 +28,9 @@ class DB {
   }
   async getSub() {
     return await User.find({ sub: 1 }).lean();
+  }
+  async getNews() {
+    return await News.findOne({}).lean();
   }
 }
 

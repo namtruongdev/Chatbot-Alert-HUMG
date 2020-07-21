@@ -413,42 +413,12 @@ class Bot {
 
         case 'xemTinTuc':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
-          const page = ['https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/hvtcconfessions/posts/?ref=page_internal', 'https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/AOFTroll/posts/?ref=page_internal'];
-          const elements = [];
+          let elements = await _dbController.default.getNews();
 
-          for (let i of page) {
-            const news = await _confessHUMG.default.getStatus(i);
-
-            if (news.length !== 0) {
-              for (let i of news) {
-                let imgUrl = i.image ? i.image : 'https://res.cloudinary.com/alerthumg/image/upload/v1595312973/45783517_2009013512520434_753951418271924224_n_bin8dy.png';
-
-                if (elements.length < 10) {
-                  elements.push({
-                    title: i.post,
-                    image_url: imgUrl,
-                    subtitle: 'Phóng viên Hấu 🍉',
-                    default_action: {
-                      type: 'web_url',
-                      url: i.url
-                    },
-                    buttons: [{
-                      type: 'web_url',
-                      url: i.url,
-                      title: 'Xem Thêm'
-                    }]
-                  });
-                } else {
-                  break;
-                }
-              }
-            }
-          }
-
-          if (elements.length !== 0) {
-            await _facebookAPI.default.sendTemplateGeneric(uid, elements);
+          if (elements.data.length !== 0) {
+            await _facebookAPI.default.sendTemplateGeneric(uid, elements.data);
           } else {
-            await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 c\xE1i tin h\xF3t hay c\xE1i drama n\xE0o \u0111\u1EC3 m\xE0 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
+            await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 b\u1EA5t c\u1EE9 tin n\xE0o \u0111\u1EC3 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
           }
 
           break;
