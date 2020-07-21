@@ -214,6 +214,12 @@ class Text {
       `Hủy thành công! Khi nào nhớ 🍉 thì hãy đăng ký nhận tin lại nha 😭`,
       `Hơ hơ... ${this.getGender()} ${name} vừa ấn nhầm nút hủy à? ${this.getGender()} đăng ký lại ngay đi nào 😝`,
     ];
+    this.tamSu = [
+      `Hấu 🍉 luôn ở đây để lắng nghe và thấu hiểu ${this.getGender().toLowerCase()} ${name}. ${this.getGender()} cứ trả lòng hết đi ạ 😁`,
+      `Nếu ngoài kia nhiều bão tố, thì về đây với 🍉. ${this.getGender()} ${name} có tâm tư gì thì cứ nói cho em nghe nhé 😂`,
+      `Say men rượu ngày mai sẽ tỉnh
+    say men tình mãi mãi vẫn còn say. ${this.getGender()} ${name} có chuyện gì cần một người bầu bạn thì 🍉 luôn sẵn lòng ạ 💋`,
+    ];
     this.thatKhong = [
       `Thật chứ. 🍉 không biết nói dối bao giờ`,
       `${this.getGender()} ${name} phải tin em chứ 😁`,

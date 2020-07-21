@@ -331,6 +331,10 @@ class Bot {
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hauCoTheLamGi));
           break;
 
+        case 'tamSu':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.tamSu));
+          break;
+
         case 'thatKhong':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.thatKhong));
           break;

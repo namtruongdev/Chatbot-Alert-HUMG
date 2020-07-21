@@ -288,6 +288,9 @@ class Bot {
         case 'hauCoTheLamGi':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.hauCoTheLamGi));
           break;
+        case 'tamSu':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.tamSu));
+          break;
         case 'thatKhong':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.thatKhong));
           break;
