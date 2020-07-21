@@ -408,7 +408,6 @@ class Bot {
     const existUser = await DB.checkExistUser(uid);
     await fbAPI.sendMarkSeen(uid);
     await fbAPI.sendTyping(uid);
-
     switch (message.payload) {
       case 'chào':
         await fbAPI.callSendAPI(uid, this.randomStr(mess.chaoHoi));
