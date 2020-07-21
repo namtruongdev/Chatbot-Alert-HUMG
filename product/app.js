@@ -41,9 +41,8 @@ app.use(_bodyParser.default.urlencoded({
 (0, _web.default)(app);
 
 (async () => {
-  _cronController.default.guiLichHoc();
-
-  _cronController.default.cronNews(); // const test = await confess.getStatus(
+  await _cronController.default.guiLichHoc();
+  await _cronController.default.cronNews(); // const test = await confess.getStatus(
   //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
   // );
   // await fbAPI.sendTemplateGeneric(
@@ -66,7 +65,6 @@ app.use(_bodyParser.default.urlencoded({
   //     'Thông báo quan trọng về tính năng nhận tin lịch học hàng ngày. Hấu 🍉 xin mời mọi người đọc để không bị bỏ lỡ thông báo: https://www.facebook.com/alertHUMG/photos/a.129148562170965/129142742171547/?type=3&theater'
   //   );
   // }
-
 })();
 
 app.listen(port, () => console.log("Chatbot listening at http://localhost:".concat(port)));
