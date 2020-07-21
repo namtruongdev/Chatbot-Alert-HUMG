@@ -17,8 +17,6 @@ const cronJob = _cron.default.CronJob;
 class Job {
   constructor() {}
 
-  async getAllMemberSub() {}
-
   async guiLichHoc() {
     const job = new cronJob('0 0 5 * * *', async function () {
       const allMemberSub = await _dbController.default.getSub();
@@ -37,26 +35,41 @@ class Job {
           } else {
             await _facebookAPI.default.callSendAPIWithTag(uid, tkb);
             await _facebookAPI.default.callSendAPIWithTag(uid, "Tuy \u0111\u01B0\u1EE3c ngh\u1EC9 h\u1ECDc nh\u01B0ng v\u1EABn ph\u1EA3i c\u1EADp nh\u1EADt tin t\u1EE9c nha ".concat(name, "... H\xE3y c\xF9ng \uD83C\uDF49 l\u01B0\u1EE3n 1 v\xF2ng quanh M\u1ECF xem c\xF3 nh\u1EEFng tin g\xEC HOT nh\xE9 \uD83D\uDE1D"));
-            const page = ['https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal'];
-            let dem = 0;
+            const page = ['https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/hvtcconfessions/posts/?ref=page_internal', 'https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/AOFTroll/posts/?ref=page_internal'];
+            const elements = [];
 
             for (let i of page) {
               const news = await _confessHUMG.default.getStatus(i);
 
               if (news.length !== 0) {
                 for (let i of news) {
-                  await _facebookAPI.default.callSendAPIWithTag(uid, i.post + '...' + "\n\n\uD83D\uDCCE B\xE0i vi\u1EBFt g\u1ED1c: ".concat(i.url));
+                  let imgUrl = i.image ? i.image : 'https://res.cloudinary.com/alerthumg/image/upload/v1595312973/45783517_2009013512520434_753951418271924224_n_bin8dy.png';
 
-                  if (i.image) {
-                    await _facebookAPI.default.sendImageAPI(uid, i.image);
+                  if (elements.length < 10) {
+                    elements.push({
+                      title: i.post,
+                      image_url: imgUrl,
+                      subtitle: 'Phóng viên Hấu 🍉',
+                      default_action: {
+                        type: 'web_url',
+                        url: i.url
+                      },
+                      buttons: [{
+                        type: 'web_url',
+                        url: i.url,
+                        title: 'Xem Thêm'
+                      }]
+                    });
+                  } else {
+                    break;
                   }
                 }
-              } else {
-                dem++;
               }
             }
 
-            if (dem === page.length) {
+            if (elements.length !== 0) {
+              await _facebookAPI.default.sendTemplateGeneric(uid, elements);
+            } else {
               await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 c\xE1i tin h\xF3t hay c\xE1i drama n\xE0o \u0111\u1EC3 m\xE0 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
             }
           }

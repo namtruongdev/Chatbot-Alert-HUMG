@@ -283,6 +283,8 @@ class facebookAPI {
           },
         },
       },
+      messaging_type: 'MESSAGE_TAG',
+      tag: 'CONFIRMED_EVENT_UPDATE',
     };
     return await axios({
       method: 'POST',

@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import initWebRoute from './routes/web';
 import cron from './controllers/cronController';
-import fbAPI from './api/facebookAPI';
+// import fbAPI from './api/facebookAPI';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';

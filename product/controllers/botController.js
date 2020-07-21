@@ -413,7 +413,7 @@ class Bot {
 
         case 'xemTinTuc':
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
-          const page = ['https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal'];
+          const page = ['https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/hvtcconfessions/posts/?ref=page_internal', 'https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/AOFTroll/posts/?ref=page_internal'];
           const elements = [];
 
           for (let i of page) {

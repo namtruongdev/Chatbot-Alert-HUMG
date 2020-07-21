@@ -330,7 +330,9 @@ class facebookAPI {
             elements: elements
           }
         }
-      }
+      },
+      messaging_type: 'MESSAGE_TAG',
+      tag: 'CONFIRMED_EVENT_UPDATE'
     };
     return await (0, _axios.default)({
       method: 'POST',
