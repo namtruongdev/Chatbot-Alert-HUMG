@@ -138,7 +138,7 @@ class Text {
       `Trăng lên đỉnh núi trăng tà. ${this.getGender()} yêu Hấu 🍉 thật hay là yêu chơi? 😍`,
     ];
     this.daluumsv = [
-      `🍉 đã nhớ Mã sinh viên của ${this.getGender()} ${name} rồi nha. Ahihi, yên tâm 🍉 sẽ không bao giờ quên được đâu. Lúc nào ${this.getGender()} cần xem lịch học thì cứ nhắn cho 🍉 biết nhé`,
+      `Hấu 🍉 đã nhớ Mã sinh viên của ${this.getGender()} ${name} rồi nha.\n${this.getGender()} có thể gõ hoặc chọn các tính năng từ menu để xem lịch học, điểm, tin tức... bla bla 💋`,
     ];
     this.khongPhaiThi = [
       `Hôm nay ${this.getGender()} ${name} không phải thi môn nào ạ 😃`,
