@@ -103,7 +103,7 @@ class Job {
     const job = new cronJob(
       '0 */15 * * * *',
       async function () {
-        await News.updateMany({}, { data: that }, (err) => {
+        await News.replaceOne({}, { data: that }, (err) => {
           if (err) {
             console.log(`Update lỗi: ${err}`);
           } else {

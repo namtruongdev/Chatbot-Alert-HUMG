@@ -90,7 +90,7 @@ class Job {
   async cronNews() {
     let that = await this.getNews();
     const job = new cronJob('0 */15 * * * *', async function () {
-      await _news.default.updateMany({}, {
+      await _news.default.replaceOne({}, {
         data: that
       }, err => {
         if (err) {
