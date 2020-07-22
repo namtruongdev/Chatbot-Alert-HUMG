@@ -41,8 +41,9 @@ app.use(_bodyParser.default.urlencoded({
 (0, _web.default)(app);
 
 (async () => {
-  await _cronController.default.guiLichHoc();
-  await _cronController.default.cronNews(); // const test = await confess.getStatus(
+  // await cron.test();
+  await _cronController.default.cronNews();
+  await _cronController.default.guiLichHoc(); // const test = await confess.getStatus(
   //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
   // );
   // await fbAPI.sendTemplateGeneric(

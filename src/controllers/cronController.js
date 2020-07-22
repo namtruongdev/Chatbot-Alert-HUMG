@@ -103,8 +103,7 @@ class Job {
     const job = new cronJob(
       '0 */15 * * * *',
       async function () {
-        const news = that;
-        await News.updateOne({}, { data: news }, (err) => {
+        await News.updateMany({}, { data: that }, (err) => {
           if (err) {
             console.log(`Update lỗi: ${err}`);
           } else {
@@ -117,6 +116,16 @@ class Job {
       null
     );
     job.start();
+  }
+  async test() {
+    let that = await this.getNews();
+    await News.updateMany({}, { data: that }, (err) => {
+      if (err) {
+        console.log(`Update lỗi: ${err}`);
+      } else {
+        console.log(`đã update tin tức thành công`);
+      }
+    });
   }
 }
 

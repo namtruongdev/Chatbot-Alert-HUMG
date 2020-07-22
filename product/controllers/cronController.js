@@ -90,9 +90,8 @@ class Job {
   async cronNews() {
     let that = await this.getNews();
     const job = new cronJob('0 */15 * * * *', async function () {
-      const news = that;
-      await _news.default.updateOne({}, {
-        data: news
+      await _news.default.updateMany({}, {
+        data: that
       }, err => {
         if (err) {
           console.log("Update l\u1ED7i: ".concat(err));
@@ -102,6 +101,19 @@ class Job {
       });
     }, null, true, null);
     job.start();
+  }
+
+  async test() {
+    let that = await this.getNews();
+    await _news.default.updateMany({}, {
+      data: that
+    }, err => {
+      if (err) {
+        console.log("Update l\u1ED7i: ".concat(err));
+      } else {
+        console.log("\u0111\xE3 update tin t\u1EE9c th\xE0nh c\xF4ng");
+      }
+    });
   }
 
 }
