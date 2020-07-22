@@ -47,7 +47,7 @@ class Confess {
       url = [...url];
       content = [...content];
 
-      for (i = 0; i < 3; i++) {
+      for (i = 0; i < 4; i++) {
         time = parseInt(content[i].getElementsByTagName('abbr')[0].dataset.utime);
 
         if (d / 1000 - time <= 86400) {
