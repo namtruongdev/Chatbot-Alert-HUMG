@@ -228,7 +228,13 @@ class Bot {
           break;
 
         case 'msv':
-          const msv = entities['msv:msv'][0].value;
+          let msv = entities['msv:msv'][0].value;
+          const text = message.text;
+          const msvMatch = text.match(/\d+/);
+
+          if (msv !== msvMatch[0]) {
+            msv = msvMatch[0];
+          }
 
           if (existUser) {
             const idStudent = existUser.msv;
@@ -421,7 +427,20 @@ class Bot {
           let elements = await _dbController.default.getNews();
 
           if (elements.data.length !== 0) {
-            await _facebookAPI.default.sendTemplateGeneric(uid, elements.data);
+            if (elements.data.length <= 10) {
+              await _facebookAPI.default.sendTemplateGeneric(uid, elements.data);
+            } else {
+              let tepm1 = elements.data.splice(10);
+              await _facebookAPI.default.sendTemplateGeneric(uid, tepm1);
+              let temp2 = elements.data.splice(0, 10);
+
+              if (temp2.length <= 10) {
+                await _facebookAPI.default.sendTemplateGeneric(uid, temp2);
+              } else {
+                temp2 = temp2.splice(10);
+                await _facebookAPI.default.sendTemplateGeneric(uid, temp2);
+              }
+            }
           } else {
             await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 b\u1EA5t c\u1EE9 tin n\xE0o \u0111\u1EC3 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
           }

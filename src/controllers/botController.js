@@ -189,7 +189,12 @@ class Bot {
           }
           break;
         case 'msv':
-          const msv = entities['msv:msv'][0].value;
+          let msv = entities['msv:msv'][0].value;
+          const text = message.text;
+          const msvMatch = text.match(/\d+/);
+          if (msv !== msvMatch[0]) {
+            msv = msvMatch[0];
+          }
           if (existUser) {
             const idStudent = existUser.msv;
             if (idStudent !== msv) {
@@ -383,7 +388,19 @@ class Bot {
           await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayTinTuc));
           let elements = await DB.getNews();
           if (elements.data.length !== 0) {
-            await fbAPI.sendTemplateGeneric(uid, elements.data);
+            if (elements.data.length <= 10) {
+              await fbAPI.sendTemplateGeneric(uid, elements.data);
+            } else {
+              let tepm1 = elements.data.splice(10);
+              await fbAPI.sendTemplateGeneric(uid, tepm1);
+              let temp2 = elements.data.splice(0, 10);
+              if (temp2.length <= 10) {
+                await fbAPI.sendTemplateGeneric(uid, temp2);
+              } else {
+                temp2 = temp2.splice(10);
+                await fbAPI.sendTemplateGeneric(uid, temp2);
+              }
+            }
           } else {
             await fbAPI.callSendAPIWithTag(
               uid,

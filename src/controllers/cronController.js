@@ -27,26 +27,23 @@ class Job {
           let imgUrl = i.image
             ? i.image
             : 'https://res.cloudinary.com/alerthumg/image/upload/v1595312973/45783517_2009013512520434_753951418271924224_n_bin8dy.png';
-          if (elements.length < 10) {
-            elements.push({
-              title: i.post,
-              image_url: imgUrl,
-              subtitle: 'Phóng viên Hấu 🍉',
-              default_action: {
+
+          elements.push({
+            title: i.post,
+            image_url: imgUrl,
+            subtitle: 'Phóng viên Hấu 🍉',
+            default_action: {
+              type: 'web_url',
+              url: i.url,
+            },
+            buttons: [
+              {
                 type: 'web_url',
                 url: i.url,
+                title: 'Xem Thêm',
               },
-              buttons: [
-                {
-                  type: 'web_url',
-                  url: i.url,
-                  title: 'Xem Thêm',
-                },
-              ],
-            });
-          } else {
-            break;
-          }
+            ],
+          });
         }
       }
     }
@@ -81,7 +78,19 @@ class Job {
               );
               let elements = await DB.getNews();
               if (elements.data.length !== 0) {
-                await fbAPI.sendTemplateGeneric(uid, elements.data);
+                if (elements.data.length <= 10) {
+                  await fbAPI.sendTemplateGeneric(uid, elements.data);
+                } else {
+                  let tepm1 = elements.data.splice(10);
+                  await fbAPI.sendTemplateGeneric(uid, tepm1);
+                  let temp2 = elements.data.splice(0, 10);
+                  if (temp2.length <= 10) {
+                    await fbAPI.sendTemplateGeneric(uid, temp2);
+                  } else {
+                    temp2 = temp2.splice(10);
+                    await fbAPI.sendTemplateGeneric(uid, temp2);
+                  }
+                }
               } else {
                 await fbAPI.callSendAPIWithTag(
                   uid,
