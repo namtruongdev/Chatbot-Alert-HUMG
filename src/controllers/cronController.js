@@ -9,7 +9,7 @@ const cronJob = cron.CronJob;
 
 class Job {
   constructor() {}
-  async getNews() {
+  static async getNews() {
     const page = [
       'https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal',
       'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal',
@@ -99,11 +99,11 @@ class Job {
     job.start();
   }
   async cronNews() {
-    let that = await this.getNews();
     const job = new cronJob(
       '0 */15 * * * *',
       async function () {
-        await News.replaceOne({}, { data: that }, (err) => {
+        let data = await Job.getNews();
+        await News.updateOne({}, { data: data }, (err) => {
           if (err) {
             console.log(`Update lỗi: ${err}`);
           } else {
@@ -118,8 +118,8 @@ class Job {
     job.start();
   }
   async test() {
-    let that = await this.getNews();
-    await News.updateMany({}, { data: that }, (err) => {
+    let data = await Job.getNews();
+    await News.updateMany({}, { data: data }, (err) => {
       if (err) {
         console.log(`Update lỗi: ${err}`);
       } else {

@@ -19,7 +19,7 @@ const cronJob = _cron.default.CronJob;
 class Job {
   constructor() {}
 
-  async getNews() {
+  static async getNews() {
     const page = ['https://www.facebook.com/pg/TuvancongtacsinhvienHUMG/posts/?ref=page_internal', 'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.edu/posts/?ref=page_internal', 'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal', 'https://www.facebook.com/pg/hvtcconfessions/posts/?ref=page_internal', 'https://www.facebook.com/pg/humgzoo/posts/?ref=page_internal', 'https://www.facebook.com/pg/AOFTroll/posts/?ref=page_internal'];
     const elements = [];
 
@@ -88,10 +88,10 @@ class Job {
   }
 
   async cronNews() {
-    let that = await this.getNews();
     const job = new cronJob('0 */15 * * * *', async function () {
-      await _news.default.replaceOne({}, {
-        data: that
+      let data = await Job.getNews();
+      await _news.default.updateOne({}, {
+        data: data
       }, err => {
         if (err) {
           console.log("Update l\u1ED7i: ".concat(err));
@@ -104,9 +104,9 @@ class Job {
   }
 
   async test() {
-    let that = await this.getNews();
+    let data = await Job.getNews();
     await _news.default.updateMany({}, {
-      data: that
+      data: data
     }, err => {
       if (err) {
         console.log("Update l\u1ED7i: ".concat(err));

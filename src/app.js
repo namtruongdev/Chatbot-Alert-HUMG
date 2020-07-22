@@ -32,8 +32,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 initWebRoute(app);
 (async () => {
   // await cron.test();
-  await cron.cronNews();
-  await cron.guiLichHoc();
+  cron.cronNews();
+  cron.guiLichHoc();
+  // cron.test();
 
   // const test = await confess.getStatus(
   //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
