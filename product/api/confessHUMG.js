@@ -51,7 +51,7 @@ class Confess {
         time = parseInt(content[i].getElementsByTagName('abbr')[0].dataset.utime);
 
         if (d / 1000 - time <= 86400) {
-          string = content[i].getElementsByClassName('userContent')[0].outerText.substr(0, 120);
+          string = content[i].getElementsByClassName('userContent')[0].outerText.substr(0, 120) || 'Bài viết này không có tiêu đề 🤣';
           uri = 'https://www.facebook.com' + url[i].getAttribute('href');
           uri = uri.split('?')[0];
 

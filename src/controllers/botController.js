@@ -29,6 +29,7 @@ class Bot {
     const mess = new text(name, gender);
     const entities = this.firstEntity(message.nlp);
     const intent = this.getIntent(message.nlp);
+    let replies;
 
     const existUser = await DB.checkExistUser(uid);
 
@@ -120,6 +121,9 @@ class Bot {
         case 'gaTinh':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.gaTinh));
           break;
+        case 'gg':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.gg));
+          break;
         case 'hauAnComChua':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.hauAnComChua));
           break;
@@ -127,7 +131,55 @@ class Bot {
           await fbAPI.callSendAPI(uid, mess.hauAnGi);
           break;
         case 'hauBietGi':
-          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauBietGi));
+          replies = [
+            {
+              content_type: 'text',
+              title: 'Mai học gì?',
+              payload: 'maiHocGi',
+              image_url:
+                'https://res.cloudinary.com/alerthumg/image/upload/v1595276010/icons8-school-backpack-48_aotytn.png',
+            },
+            {
+              content_type: 'text',
+              title: 'Tin tức?',
+              payload: 'tinTuc',
+              image_url:
+                'https://res.cloudinary.com/alerthumg/image/upload/v1595276474/icons8-news-50_la5oo7.png',
+            },
+            {
+              content_type: 'text',
+              title: 'Tâm sự?',
+              payload: 'tamSu',
+              image_url:
+                'https://res.cloudinary.com/alerthumg/image/upload/v1595276575/icons8-very-popular-topic-64_zjkfym.png',
+            },
+            {
+              content_type: 'text',
+              title: 'Xem điểm thi?',
+              payload: 'xemDiemThi',
+              image_url:
+                'https://res.cloudinary.com/alerthumg/image/upload/v1595276214/icons8-square-number-48_hrlxeb.png',
+            },
+            {
+              content_type: 'text',
+              title: 'Hủy nhận tin',
+              payload: 'huyNhanTin',
+              image_url:
+                'https://res.cloudinary.com/alerthumg/image/upload/v1595276650/icons8-calendar-delete-64_n2jwtv.png',
+            },
+            {
+              content_type: 'text',
+              title: 'Xem lịch thi?',
+              payload: 'xemLichThi',
+              image_url:
+                'https://res.cloudinary.com/alerthumg/image/upload/v1595276360/icons8-test-passed-64_hrolpn.png',
+            },
+          ];
+          await fbAPI.quickReplies(
+            uid,
+            this.randomStr(mess.luaChonTinhNang),
+            replies
+          );
           break;
         case 'hauBietHatKhong':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.hauBietHatKhong));
@@ -165,6 +217,46 @@ class Bot {
           break;
         case 'hauSayRuou':
           await fbAPI.callSendAPI(uid, this.randomStr(mess.hauSayRuou));
+          break;
+        case 'hauSinhNgayBaoNhieu':
+          await fbAPI.callSendAPI(
+            uid,
+            this.randomStr(mess.hauSinhNgayBaoNhieu)
+          );
+          break;
+        case 'hauUongNuocChua':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hauUongNuocChua));
+          break;
+        case 'hoiBossDepTraiKhong':
+          await fbAPI.callSendAPI(
+            uid,
+            this.randomStr(mess.hoiBossDepTraiKhong)
+          );
+          break;
+        case 'hoiCham':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoiCham));
+          break;
+        case 'hoiGiaTinChi':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoiGiaTinChi));
+          break;
+        case 'hoiGioiTinhHau':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoiGioiTinhHau));
+          break;
+        case 'hoiTen':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoiTen));
+          break;
+        case 'hoiThayHieuTruong':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoiThayHieuTruong));
+          await fbAPI.sendImageAPI(
+            uid,
+            `https://res.cloudinary.com/alerthumg/image/upload/v1595699985/a_hai_46_uhiztr.jpg`
+          );
+          break;
+        case 'hoiThongTinBoss':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoiThongTinBoss));
+          break;
+        case 'hoinguoiyeu':
+          await fbAPI.callSendAPI(uid, this.randomStr(mess.hoinguoiyeu));
           break;
         case 'maiHocGi':
           if (existUser) {
@@ -291,7 +383,7 @@ class Bot {
           await fbAPI.callSendAPI(uid, this.randomStr(mess.hauAnDuocKhong));
           break;
         case 'hauCoTheLamGi':
-          const replies = [
+          replies = [
             {
               content_type: 'text',
               title: 'Mai học gì?',

@@ -39,6 +39,7 @@ class Text {
     this.dangLayDiem = ["\uD83C\uDF49 \u0111ang l\u1EA5y \u0111i\u1EC3m thi... ".concat(this.getGender(), " ").concat(name, " ch\u1EDD x\xEDu nha \uD83D\uDE0E")];
     this.dangLayTinTuc = ["".concat(this.getGender(), " ").concat(name, " ch\u1EDD \uD83C\uDF49 x\xEDu nha... Em \u0111ang ch\u1EA1y \u0111i l\u1EA5y tin v\u1EC1 cho ").concat(this.getGender().toLowerCase(), " \u0111\xE2y \uD83E\uDD75")];
     this.gaTinh = ["Y\xEAu lu\xF4n ch\u1EE9 H\u1EA5u \uD83C\uDF49 c\xF3 ng\xE1n g\xEC \u0111\xE2u ch\u1EDB \uD83D\uDE18", "Ch\u1EC9 c\u1EA7n ".concat(this.getGender(), " ").concat(name, " n\xF3i y\xEAu. H\u1EA5u \uD83C\uDF49 s\u1EBD b\xE1m theo ").concat(this.getGender(), " su\u1ED1t \u0111\u1EDDi \uD83D\uDE0D"), "Tr\u0103ng l\xEAn \u0111\u1EC9nh n\xFAi tr\u0103ng t\xE0. ".concat(this.getGender(), " y\xEAu H\u1EA5u \uD83C\uDF49 th\u1EADt hay l\xE0 y\xEAu ch\u01A1i? \uD83D\uDE0D")];
+    this.gg = ["Good game \uD83E\uDD23"];
     this.daluumsv = ["H\u1EA5u \uD83C\uDF49 \u0111\xE3 nh\u1EDB M\xE3 sinh vi\xEAn c\u1EE7a ".concat(this.getGender(), " ").concat(name, " r\u1ED3i nha.\n").concat(this.getGender(), " c\xF3 th\u1EC3 g\xF5 ho\u1EB7c ch\u1ECDn c\xE1c t\xEDnh n\u0103ng t\u1EEB menu \u0111\u1EC3 xem l\u1ECBch h\u1ECDc, \u0111i\u1EC3m, tin t\u1EE9c... bla bla \uD83D\uDC8B")];
     this.khongPhaiThi = ["H\xF4m nay ".concat(this.getGender(), " ").concat(name, " kh\xF4ng ph\u1EA3i thi m\xF4n n\xE0o \u1EA1 \uD83D\uDE03")];
     this.luaChonTinhNang = ["\uD83C\uDF49 xin m\u1EDDi ".concat(this.getGender().toLowerCase(), " ").concat(name, " l\u1EF1a ch\u1ECDn 1 trong c\xE1c t\xEDnh n\u0103ng b\xEAn d\u01B0\u1EDBi:")];
@@ -56,6 +57,16 @@ class Text {
     this.hauLuoi = ["X\xED... \uD83C\uDF49 h\u01A1i b\u1ECB ch\u0103m \u0111\u1EA5y nh\xE9 \uD83D\uDE43"];
     this.hauODau = ['Dạ. 🍉 ở Việt Nam ạ, anh em mình cùng quê mà 😍'];
     this.hauSayRuou = ["Haha, ch\u0103c v\u1EADy th\u1EADt ".concat(this.getGender().toLowerCase(), " \u1EA1. \uD83C\uDF49 th\u1EA5y ng\u01B0\u1EDDi c\u1EE9 n\xE2ng n\xE2ng \uD83C\uDF88")];
+    this.hauSinhNgayBaoNhieu = ["H\u1EA5u \uD83C\uDF49 sinh ng\xE0y 08/07/2020 nha ".concat(this.getGender().toLowerCase())];
+    this.hauUongNuocChua = ["H\u1EA5u \uD83C\uDF49 u\u1ED1ng r\u1ED3i \u1EA1. ".concat(this.getGender(), " ").concat(name, " c\u0169ng nh\u1EDB u\u1ED1ng n\u01B0\u1EDBc \u0111\u1EA7y \u0111\u1EE7 nhau... \uD83D\uDE09 (2 l\xEDt / ng\xE0y)")];
+    this.hoiBossDepTraiKhong = ["Boss Tr\u01B0\u1EDDng c\u1EE7a H\u1EA5u \uD83C\uDF49 x\u1EA5u zai l\u1EAFm \u1EA1 \uD83D\uDE1D. Nh\u01B0ng \u0111\u01B0\u1EE3c c\xE1i l\xE0 gi\xE0u... t\xECnh c\u1EA3m ".concat(this.getGender().toLowerCase(), " ").concat(name, " \u1EA1")];
+    this.hoiCham = ["D\u1EA1. ".concat(this.getGender(), " ").concat(name, " \u0111ang l\u0103n t\u0103n v\u1EA5n \u0111\u1EC1 g\xEC \xE0? \uD83D\uDE01")];
+    this.hoiGiaTinChi = ["- Kh\u1ED1i kinh t\u1EBF: 326k/t\xEDn\n- Kh\u1ED1i k\u1EF9 thu\u1EADt: 368k/t\xEDn\nHaizz, n\u0103m n\xE0y c\u0169ng t\u0103ng \u0111\u1EC1u \u0111\u1EC1u ".concat(this.getGender().toLowerCase(), " ").concat(name, " nh\u1EC9? \uD83D\uDE0A")];
+    this.hoiGioiTinhHau = ["H\u1EA5u l\xE0 con g\xE1i nha ".concat(this.getGender().toLowerCase(), ". ").concat(this.getGender(), " h\u1ECFi k\u1EF3 c\u1EE5c gh\xEA \uD83D\uDE02")];
+    this.hoiTen = ["Th\xEC H\u1EA5u \uD83C\uDF49 t\xEAn l\xE0 H\u1EA5u m\xE0 ".concat(this.getGender().toLowerCase())];
+    this.hoiThayHieuTruong = ["GS.TS Tr\u1EA7n Thanh H\u1EA3i hi\u1EC7n t\u1EA1i \u0111ang n\u1EAFm gi\u1EEF ch\u1EE9c v\u1EE5 Hi\u1EC7u tr\u01B0\u1EDFng c\u1EE7a tr\u01B0\u1EDDng ta nh\xE9 ".concat(this.getGender().toLowerCase(), " \uD83D\uDE0A")];
+    this.hoiThongTinBoss = ["Boss c\u1EE7a H\u1EA5u \uD83C\uDF49 c\xF3 m\u1EB7t \u1EDF kh\u1EAFp m\u1ECDi n\u01A1i tr\xEAn Internet, ".concat(this.getGender().toLowerCase(), " ").concat(name, " ch\u1EC9 c\u1EA7n google \"duongnamtruong\" l\xE0 ra \u1EA1 \uD83E\uDD70")];
+    this.hoinguoiyeu = ["Em th\xEC l\xE0m g\xEC \u0111\xE3 c\xF3 c\xF3 ng\u01B0\u1EDDi y\xEAu, em \u0111ang s\u1EE3 \u1EBF \u0111\xE2y n\xE0y ".concat(this.getGender().toLowerCase(), " ").concat(name, " \u01A1i \uD83D\uDE1D")];
     this.huyDangKyRoiMa = ["".concat(this.getGender(), " ").concat(name, " \u0111\xE3 h\u1EE7y \u0111\u0103ng k\xFD r\u1ED3i m\xE0, h\u1EE7y g\xEC m\xE0 h\u1EE7y l\u1EAFm v\u1EADy. ").concat(this.getGender(), " h\u1EBFt th\u01B0\u01A1ng \uD83C\uDF49 r\u1ED3i \xE0?")];
     this.notInfo = ["".concat(this.getGender(), " ").concat(name, " vui l\xF2ng cung c\u1EA5p M\xE3 sinh vi\xEAn cho \uD83C\uDF49 tr\u01B0\u1EDBc khi mu\u1ED1n \u0111\u0103ng k\xFD nh\u1EADn tin h\xE0ng ng\xE0y nh\xE9")];
     this.notSub = ["".concat(this.getGender(), " ").concat(name, " \u0111\xE3 \u0111\u0103ng k\xFD c\xE1i c\xE1i g\xEC \u0111\xE2u m\xE0 \u0111\xF2i h\u1EE7y v\u1EADy. Hic \uD83D\uDE25")];

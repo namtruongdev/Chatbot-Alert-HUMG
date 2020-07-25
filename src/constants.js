@@ -137,6 +137,7 @@ class Text {
       `Chỉ cần ${this.getGender()} ${name} nói yêu. Hấu 🍉 sẽ bám theo ${this.getGender()} suốt đời 😍`,
       `Trăng lên đỉnh núi trăng tà. ${this.getGender()} yêu Hấu 🍉 thật hay là yêu chơi? 😍`,
     ];
+    this.gg = [`Good game 🤣`];
     this.daluumsv = [
       `Hấu 🍉 đã nhớ Mã sinh viên của ${this.getGender()} ${name} rồi nha.\n${this.getGender()} có thể gõ hoặc chọn các tính năng từ menu để xem lịch học, điểm, tin tức... bla bla 💋`,
     ];
@@ -185,6 +186,36 @@ class Text {
     this.hauODau = ['Dạ. 🍉 ở Việt Nam ạ, anh em mình cùng quê mà 😍'];
     this.hauSayRuou = [
       `Haha, chăc vậy thật ${this.getGender().toLowerCase()} ạ. 🍉 thấy người cứ nâng nâng 🎈`,
+    ];
+    this.hauSinhNgayBaoNhieu = [
+      `Hấu 🍉 sinh ngày 08/07/2020 nha ${this.getGender().toLowerCase()}`,
+    ];
+    this.hauUongNuocChua = [
+      `Hấu 🍉 uống rồi ạ. ${this.getGender()} ${name} cũng nhớ uống nước đầy đủ nhau... 😉 (2 lít / ngày)`,
+    ];
+    this.hoiBossDepTraiKhong = [
+      `Boss Trường của Hấu 🍉 xấu zai lắm ạ 😝. Nhưng được cái là giàu... tình cảm ${this.getGender().toLowerCase()} ${name} ạ`,
+    ];
+    this.hoiCham = [
+      `Dạ. ${this.getGender()} ${name} đang lăn tăn vấn đề gì à? 😁`,
+    ];
+    this.hoiGiaTinChi = [
+      `- Khối kinh tế: 326k/tín\n- Khối kỹ thuật: 368k/tín\nHaizz, năm này cũng tăng đều đều ${this.getGender().toLowerCase()} ${name} nhỉ? 😊`,
+    ];
+    this.hoiGioiTinhHau = [
+      `Hấu là con gái nha ${this.getGender().toLowerCase()}. ${this.getGender()} hỏi kỳ cục ghê 😂`,
+    ];
+    this.hoiTen = [
+      `Thì Hấu 🍉 tên là Hấu mà ${this.getGender().toLowerCase()}`,
+    ];
+    this.hoiThayHieuTruong = [
+      `GS.TS Trần Thanh Hải hiện tại đang nắm giữ chức vụ Hiệu trưởng của trường ta nhé ${this.getGender().toLowerCase()} 😊`,
+    ];
+    this.hoiThongTinBoss = [
+      `Boss của Hấu 🍉 có mặt ở khắp mọi nơi trên Internet, ${this.getGender().toLowerCase()} ${name} chỉ cần google "duongnamtruong" là ra ạ 🥰`,
+    ];
+    this.hoinguoiyeu = [
+      `Em thì làm gì đã có có người yêu, em đang sợ ế đây này ${this.getGender().toLowerCase()} ${name} ơi 😝`,
     ];
     this.huyDangKyRoiMa = [
       `${this.getGender()} ${name} đã hủy đăng ký rồi mà, hủy gì mà hủy lắm vậy. ${this.getGender()} hết thương 🍉 rồi à?`,
