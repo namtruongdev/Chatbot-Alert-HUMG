@@ -285,6 +285,26 @@ class Bot {
           await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.hoinguoiyeu));
           break;
 
+        case 'humg':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.humg));
+          break;
+
+        case 'khenHau':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.khenHau));
+          break;
+
+        case 'khiemTon':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.khiemTon));
+          break;
+
+        case 'khongLamMaVanCoAn':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.khongLamMaVanCoAn));
+          break;
+
+        case 'khongNoiGi':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.khongNoiGi));
+          break;
+
         case 'maiHocGi':
           if (existUser) {
             await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.danglaytkb));
@@ -342,6 +362,66 @@ class Bot {
             await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.daluumsv));
           }
 
+          break;
+
+        case 'muonCoTien':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.muonCoTien));
+          break;
+
+        case 'nghiHeRoi':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.nghiHeRoi));
+          break;
+
+        case 'nhaiLaiHau':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.nhaiLaiHau));
+          break;
+
+        case 'nhoTenNguoiDung':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.nhoTenNguoiDung));
+          break;
+
+        case 'noiXauBoss':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.noiXauBoss));
+          break;
+
+        case 'nopHocPhiMuonKhongLenDiem':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.nopHocPhiMuonKhongLenDiem));
+          break;
+
+        case 'saiConCai':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.saiConCai));
+          break;
+
+        case 'saoConODay':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.saoConODay));
+          break;
+
+        case 'saoLaiThe':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.saoLaiThe));
+          break;
+
+        case 'thanBuon':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.thanBuon));
+          break;
+
+        case 'timConDapKhong':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.timConDapKhong));
+          break;
+
+        case 'treuGheo':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.treuGheo));
+          break;
+
+        case 'tucGian':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.tucGian));
+          break;
+
+        case 'voDuyen':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.voDuyen));
+          break;
+
+        case 'xemAnhGai':
+          await _facebookAPI.default.callSendAPI(uid, mess.khongKhaDung);
           break;
 
         case 'xemtkb':
@@ -553,6 +633,18 @@ class Bot {
             await _facebookAPI.default.callSendAPIWithTag(uid, "Ch\xE1n tr\u01B0\u1EDDng th\u1EADt s\u1EF1 \uD83D\uDE05. H\xF4m nay kh\xF4ng c\xF3 b\u1EA5t c\u1EE9 tin n\xE0o \u0111\u1EC3 h\xF3ng c\u1EA3 ".concat(name, " \u01A1i!"));
           }
 
+          break;
+
+        case 'xemThoiTiet':
+          await _facebookAPI.default.callSendAPI(uid, mess.khongKhaDung);
+          break;
+
+        case 'yeuCauDeoKinhCan':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.yeuCauDeoKinhCan));
+          break;
+
+        case 'yeuHau':
+          await _facebookAPI.default.callSendAPI(uid, this.randomStr(mess.yeuHau));
           break;
 
         case 'wiki':

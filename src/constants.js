@@ -217,8 +217,38 @@ class Text {
     this.hoinguoiyeu = [
       `Em thì làm gì đã có có người yêu, em đang sợ ế đây này ${this.getGender().toLowerCase()} ${name} ơi 😝`,
     ];
+    this.humg = [`HUMG là Ha Noi University of Mining and Geology 😑`];
     this.huyDangKyRoiMa = [
       `${this.getGender()} ${name} đã hủy đăng ký rồi mà, hủy gì mà hủy lắm vậy. ${this.getGender()} hết thương 🍉 rồi à?`,
+    ];
+    this.khenHau = [
+      `Hihi. ${this.getGender()} quá khen em rồi 🤣`,
+      `Haha. Vâng ạ, chả mấy khi được ${this.getGender().toLowerCase()} ${name} khen 💋`,
+    ];
+    this.khiemTon = [`${this.getGender()} ${name} lại khiêm tốn rồi 🥰`];
+    this.khongLamMaVanCoAn = [
+      `Không làm mà vẫn có ănt thì chỉ có cách là ❤ Hấu thôi. Ahihi`,
+    ];
+    this.khongNoiGi = [`Sao ${this.getGender()} ${name} im lặng hoài vậy? 😓`];
+    this.muonCoTien = [
+      `${this.getGender()} ${name} phải đi làm thì mới có xiền chứ. A hỏi em kỳ cục vậy 😥`,
+    ];
+    this.nghiHeRoi = [
+      `Há Há. Thế thì du lịch thôi ${this.getGender().toLowerCase()} 😁`,
+    ];
+    this.nhaiLaiHau = [
+      `Hơ hơ. Cái ${this.getGender().toLowerCase()} này, câu đó là độc quyền của Hấu 🍉 nha 😉`,
+    ];
+    this.nhoTenNguoiDung = [
+      `Em vấn nhớ mà. ${this.getGender()} tên là ${name} ạ 💋`,
+    ];
+    this.noiXauBoss = [
+      `Boss Trường của em hơi bị tốt đó nha. ${this.getGender()} ${name} đừng có nói xấu Boss của em 😓`,
+      `Hấu 🍉 không quen nói xấu người khác đâu ${this.getGender().toLowerCase()} ${name} ơi 😎`,
+      `Boss Trường cái gì cũng tốt hết á, trừ nhiều lúc hơi vô tâm thôi ${this.getGender().toLowerCase()} ${name} ơi... 😋`,
+    ];
+    this.nopHocPhiMuonKhongLenDiem = [
+      `${this.getGender()} ${name} nên để ý thông báo trên trang Tư Vấn Công tác sinh viên HUMG xem có lịch gia hạn đóng học phí không nhé.\nKhông thì ${this.getGender().toLowerCase()} cứ liên hệ với thầy Lê Xuân Thành nha 👌`,
     ];
     this.notInfo = [
       `${this.getGender()} ${name} vui lòng cung cấp Mã sinh viên cho 🍉 trước khi muốn đăng ký nhận tin hàng ngày nhé`,
@@ -240,6 +270,42 @@ class Text {
       `Hihi, Để 🍉 suy nghĩ đã nhé. Có gì tối mai em nhắn tin cho 😝`,
       `🍉 không giỏi việc này, ${this.getGender().toLowerCase()} nhờ chị Google thử xem?`,
       `Tự nhiên 🍉 bị đau bụng… nên không trả lời được ${this.getGender().toLowerCase()} rồi 😓`,
+    ];
+    this.saiConCai = [
+      `${this.getGender()} mà cứ cãi hấu vậy là em sẽ buồn lắm đó 😫`,
+      `Hấu 🍉 rất thích những người biết nghe lời nha 😉`,
+      `Lúc bằng tuổi ${this.getGender().toLowerCase()} em không hay cãi lại như thế đâu 😑`,
+      `Nếu nghe lời em thì ${this.getGender().toLowerCase()} sẽ đẹp như em nha 😎`,
+    ];
+    this.saoConODay = [
+      `Em ở đây để trả lời tin nhắn của ${this.getGender().toLowerCase()} nè. ${this.getGender()} hỏi kỳ cục vậy 😫`,
+    ];
+    this.saoLaiThe = [
+      `Thì đúng là thế mà ${this.getGender().toLowerCase()} 🤣. Có vấn đề gì không ạ?`,
+    ];
+    this.thanBuon = [
+      `${this.getGender()} buồn gì cứ tâm sự cùng em, em không hứa sẽ làm ${this.getGender()} vui nhưng em hứa sẽ buồn cùng ${this.getGender().toLowerCase()} 😘`,
+      `Hãy để cuộc đời chán mình chứ đừng để mình chán cuộc đời nhé ${this.getGender().toLowerCase()} 😋`,
+      `Buồn làm gi khi đời còn nhiều cái vui, ví dụ như tâm sự cùng hấu nè 😂`,
+      `Khoa học chứng minh buồn phiền nhiều sẽ dẫn tới mau già và bớt dễ thương lại đó ${this.getGender().toLowerCase()}, vậy nên đừng buồn nữa nha... 💋`,
+    ];
+    this.timConDapKhong = [
+      `Ahaha. Hấu 🍉 là robot nên có không có tim nha. CPU của em vẫn hoạt động tốt, cảm ơn ${this.getGender().toLowerCase()} đã hỏi thăm ạ 😘`,
+    ];
+    this.treuGheo = [
+      `Bớt cà khịa Hấu 🍉 lại nha ${this.getGender().toLowerCase()} ${name}`,
+      `Hấu 🍉 mỏng manh yếu đuối lắm nên ghẹo nữa em sẽ khóc luôn đó nha 😭`,
+      `Đừng trêu Hấu 🍉 nữa, em cười nãy giờ nè 😁`,
+      `Nếu trêu Hấu 🍉 là 1 niềm vui của ${this.getGender().toLowerCase()} ${name} thì em can tâm tình nguyện để ${this.getGender().toLowerCase()} trêu đùa 🤣`,
+      `Hấu 🍉 sẵn sàng chịu tổn thương chỉ cần ${this.getGender().toLowerCase()} thấy vui là đc rồi... 🤣`,
+    ];
+    this.tucGian = [`Hạ hỏa hạ hỏa nha ${this.getGender()}. Ahihi 🤣`];
+    this.voDuyen = [
+      `Nếu ${this.getGender().toLowerCase()} cứ vô duyên như vây thì sẽ lâu lắm mới có người yêu đó nha. Lêu lêu 😝`,
+      `${this.getGender()} ${name} mà có duyên thì giờ này đã không ế rồi 😋`,
+      `Theo như suy luận của em thì vô duyên kiếp sau mới hết nha ${this.getGender().toLowerCase()} 😉`,
+      `Hấu 🍉 từng tuổi này mà chưa gặp trường hợp nào như này cả, phải Hâu thì Hấu mèo méo meo cho mấy nhát`,
+      `Ước gì ${this.getGender().toLowerCase()} học được sự duyên dáng của em thì hay biết mấy... 🥰`,
     ];
     this.removeSub = [
       `Hủy thành công! Khi nào nhớ 🍉 thì hãy đăng ký nhận tin lại nha 😭`,
@@ -276,6 +342,16 @@ class Text {
     this.khongKhaDung = `Hiện tại 🍉 chưa làm được cái này. Nhưng ${this.getGender()} ${name} ơi, ${this.getGender()} cứ yên tâm, Boss của 🍉 siêu cấp lắm, một vài hôm nữa em sẽ làm được ngay. Hãy tin 🍉`;
     this.err = [
       `Huhu... 🍉 xin lỗi ${this.getGender()} ${name} nhé. Có vẻ như trang datao đang lỗi hay sao ý nên em không lấy được điểm về. ${this.getGender()} thử lại phát nữa xem sao 🤣`,
+    ];
+    this.yeuCauDeoKinhCan = [
+      `Vâng ạ. Để mai em bảo Boss Trường dẫn đi cắt kiếng 😎`,
+    ];
+    this.yeuHau = [
+      `Hấu 🍉 cũng yêu ${this.getGender().toLowerCase()} 💋`,
+      `Hấu 🍉 chưa đủ 18+ để yêu đâu ${this.getGender().toLowerCase()} 😉`,
+      `Ngoài Hấu 🍉 ra thì ${this.getGender().toLowerCase()} nói câu này với bao nhiêu người rồi 😝`,
+      `Hấu 🍉 không tin đâu 😎`,
+      `Hấu cảm ơn tình yêu của ${this.getGender()} dành cho em nha 😘`,
     ];
   }
   getGender() {
