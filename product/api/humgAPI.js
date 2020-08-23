@@ -97,6 +97,8 @@ class Humg {
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getDay().toLowerCase()) {
           subject += "\n\n\uD83D\uDCCC ".concat(i[0], " (").concat(i[1], "):\n\n\uD83D\uDCCE Ph\xF2ng ").concat(i[4], "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i[5], " - Ti\u1EBFt ").concat(parseInt(i[6]) + parseInt(i[5]) - 1, "\n\uD83D\uDCCE ").concat(this.getTime(i[5]).batDau, " - ").concat(this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc, "\n\uD83D\uDCCE Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[7]);
+        } else if (i[3].toLowerCase() === this.getDay().toLowerCase()) {
+          subject += "\n\n\uD83D\uDCCC ".concat(i[1], " (").concat(i[2], "):\n\n\uD83D\uDCCE Ph\xF2ng ").concat(i[5], "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i[6], " - Ti\u1EBFt ").concat(parseInt(i[7]) + parseInt(i[6]) - 1, "\n\uD83D\uDCCE ").concat(this.getTime(i[6]).batDau, " - ").concat(this.getTime(parseInt(i[7]) + parseInt(i[6]) - 1).ketThuc, "\n\uD83D\uDCCE Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[8]);
         }
       }
 
@@ -148,6 +150,8 @@ class Humg {
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getNextDay().toLowerCase()) {
           subject += "\n\n\uD83D\uDCCC ".concat(i[0], " (").concat(i[1], "):\n\n\uD83D\uDCCE Ph\xF2ng ").concat(i[4], "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i[5], " - Ti\u1EBFt ").concat(parseInt(i[6]) + parseInt(i[5]) - 1, "\n\uD83D\uDCCE ").concat(this.getTime(i[5]).batDau, " - ").concat(this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc, "\n\uD83D\uDCCE Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[7]);
+        } else if (i[3].toLowerCase() === this.getNextDay().toLowerCase()) {
+          subject += "\n\n\uD83D\uDCCC ".concat(i[1], " (").concat(i[2], "):\n\n\uD83D\uDCCE Ph\xF2ng ").concat(i[5], "\n\uD83D\uDCCE Ti\u1EBFt ").concat(i[6], " - Ti\u1EBFt ").concat(parseInt(i[7]) + parseInt(i[6]) - 1, "\n\uD83D\uDCCE ").concat(this.getTime(i[6]).batDau, " - ").concat(this.getTime(parseInt(i[7]) + parseInt(i[6]) - 1).ketThuc, "\n\uD83D\uDCCE Gi\u1EA3ng vi\xEAn l\xE0 ").concat(i[8]);
         }
       }
 
