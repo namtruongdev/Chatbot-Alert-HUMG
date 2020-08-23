@@ -72,6 +72,7 @@ class Humg {
   async getSchedule(msv, name, id) {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: false,
     });
     const page = await browser.newPage();
     await page.goto(
@@ -97,6 +98,7 @@ class Humg {
         const final = temp.slice(1, 11);
         tkb.push(final);
       }
+
       let subject = ``;
       for (let i of tkb) {
         if (i[2].toLowerCase() === this.getDay().toLowerCase()) {
@@ -107,6 +109,14 @@ class Humg {
           } - ${
             this.getTime(parseInt(i[6]) + parseInt(i[5]) - 1).ketThuc
           }\n📎 Giảng viên là ${i[7]}`;
+        } else if (i[3].toLowerCase() === this.getDay().toLowerCase()) {
+          subject += `\n\n📌 ${i[1]} (${i[2]}):\n\n📎 Phòng ${i[5]}\n📎 Tiết ${
+            i[6]
+          } - Tiết ${parseInt(i[7]) + parseInt(i[6]) - 1}\n📎 ${
+            this.getTime(i[6]).batDau
+          } - ${
+            this.getTime(parseInt(i[7]) + parseInt(i[6]) - 1).ketThuc
+          }\n📎 Giảng viên là ${i[8]}`;
         }
       }
 
