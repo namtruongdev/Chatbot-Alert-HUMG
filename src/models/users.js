@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   gender: String,
   msv: String,
   sub: Number,
+  off: Number,
 });
 
 module.exports = mongoose.model('users', userSchema);

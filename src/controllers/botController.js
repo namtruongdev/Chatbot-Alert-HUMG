@@ -33,6 +33,39 @@ class Bot {
 
     const existUser = await DB.checkExistUser(uid);
 
+    if (
+      (uid === '4605487302798502' ||
+        uid === '3059506464164072' ||
+        uid === '3158604217508280') &&
+      message.text.toLowerCase() === 'off'
+    ) {
+      await fbAPI.sendMarkSeen(uid);
+      await fbAPI.sendTyping(uid);
+      await DB.updateOff(1);
+      setTimeout(async () => {
+        await DB.updateOff(0);
+      }, 1000 * 60 * 15);
+      return await fbAPI.callSendAPI(
+        uid,
+        'Đã tắt BOT tạm thời 15 phút cho tất cả mọi người. Gõ "on" để bật lại, nếu quên không bật lại thì 15 phút sau BOT sẽ tự bật.'
+      );
+    }
+
+    if (
+      (uid === '4605487302798502' ||
+        uid === '3059506464164072' ||
+        uid === '3158604217508280') &&
+      message.text.toLowerCase() === 'on'
+    ) {
+      await fbAPI.sendMarkSeen(uid);
+      await fbAPI.sendTyping(uid);
+      await DB.updateOff(0);
+      return await fbAPI.callSendAPI(
+        uid,
+        'Đã bật BOT thành công. Gõ "off" nếu muốn tắt.'
+      );
+    }
+
     if (intent && intent.confidence > 0.8) {
       await fbAPI.sendMarkSeen(uid);
       await fbAPI.sendTyping(uid);
@@ -274,7 +307,7 @@ class Bot {
           await fbAPI.callSendAPI(uid, this.randomStr(mess.khongNoiGi));
           break;
         case 'maiHocGi':
-          if (existUser) {
+          if (existUser && existUser.msv !== 'Trống') {
             await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             const msv = existUser.msv;
             const tkb = await humgAPI.getScheduleNextDay(msv, name);
@@ -304,9 +337,12 @@ class Bot {
           }
           if (existUser) {
             const idStudent = existUser.msv;
-            if (idStudent !== msv) {
+            if (idStudent !== msv && idStudent !== 'Trống') {
               await DB.updateMsv(uid, msv);
               await fbAPI.callSendAPI(uid, this.randomStr(mess.thaydoimsv));
+            } else if (idStudent === 'Trống') {
+              await DB.updateMsv(uid, msv);
+              await fbAPI.callSendAPI(uid, this.randomStr(mess.daluumsv));
             } else {
               await fbAPI.callSendAPI(uid, this.randomStr(mess.daTungNoiMsv));
             }
@@ -319,6 +355,7 @@ class Bot {
               gender: gender,
               msv: msv,
               sub: 0,
+              off: 0,
             });
             data.save((err) => {
               if (err) {
@@ -381,7 +418,7 @@ class Bot {
           await fbAPI.callSendAPI(uid, mess.khongKhaDung);
           break;
         case 'xemtkb':
-          if (existUser) {
+          if (existUser && existUser.msv !== 'Trống') {
             await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
             const msv = existUser.msv;
             const tkb = await humgAPI.getSchedule(msv, name, uid);
@@ -529,7 +566,7 @@ class Bot {
           );
           break;
         case 'xemLichThi':
-          if (existUser) {
+          if (existUser && existUser.msv !== 'Trống') {
             await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayLichThi));
             const msv = existUser.msv;
             const lichThi = await humgAPI.getTestSchedule(msv);
@@ -575,7 +612,7 @@ class Bot {
             return await fbAPI.callSendAPI(uid, this.randomStr(mess.xemtkb));
           }
         case 'xemDiemThi':
-          if (existUser) {
+          if (existUser && existUser.msv !== 'Trống') {
             await fbAPI.callSendAPI(uid, this.randomStr(mess.dangLayDiem));
             const msv = existUser.msv;
             const diemThi = await humgAPI.getPoint(msv);
@@ -646,7 +683,7 @@ class Bot {
         await fbAPI.callSendAPI(uid, this.randomStr(mess.chaoHoi));
         break;
       case 'Xem lịch học 📅':
-        if (existUser) {
+        if (existUser && existUser.msv !== 'Trống') {
           await fbAPI.callSendAPI(uid, this.randomStr(mess.danglaytkb));
           const msv = existUser.msv;
           const tkb = await humgAPI.getSchedule(msv, name, uid);

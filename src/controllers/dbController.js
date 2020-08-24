@@ -26,6 +26,30 @@ class DB {
       }
     });
   }
+
+  async updateOff(off) {
+    return await User.updateMany({}, { off: off }, (err) => {
+      if (err) {
+        console.log(`Lỗi cập nhật trạng thái hỗ trợ: ${err}`);
+      } else {
+        console.log(`Đã cập nhật trạng thái hỗ trợ thành công`);
+      }
+    });
+  }
+
+  async updateInfo(uid, name, profile_pic, gender) {
+    return await User.updateOne(
+      { uid: uid },
+      { name: name, profile_pic: profile_pic, gender: gender },
+      (err) => {
+        if (err) {
+          console.log(`Lỗi cập nhật thông tin: ${err}`);
+        } else {
+          console.log(`${uid} đã cập nhật thông tin thành công`);
+        }
+      }
+    );
+  }
   async getSub() {
     return await User.find({ sub: 1 }).lean();
   }

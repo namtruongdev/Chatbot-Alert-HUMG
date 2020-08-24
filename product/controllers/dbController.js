@@ -43,6 +43,34 @@ class DB {
     });
   }
 
+  async updateOff(off) {
+    return await _users.default.updateMany({}, {
+      off: off
+    }, err => {
+      if (err) {
+        console.log("L\u1ED7i c\u1EADp nh\u1EADt tr\u1EA1ng th\xE1i h\u1ED7 tr\u1EE3: ".concat(err));
+      } else {
+        console.log("\u0110\xE3 c\u1EADp nh\u1EADt tr\u1EA1ng th\xE1i h\u1ED7 tr\u1EE3 th\xE0nh c\xF4ng");
+      }
+    });
+  }
+
+  async updateInfo(uid, name, profile_pic, gender) {
+    return await _users.default.updateOne({
+      uid: uid
+    }, {
+      name: name,
+      profile_pic: profile_pic,
+      gender: gender
+    }, err => {
+      if (err) {
+        console.log("L\u1ED7i c\u1EADp nh\u1EADt th\xF4ng tin: ".concat(err));
+      } else {
+        console.log("".concat(uid, " \u0111\xE3 c\u1EADp nh\u1EADt th\xF4ng tin th\xE0nh c\xF4ng"));
+      }
+    });
+  }
+
   async getSub() {
     return await _users.default.find({
       sub: 1

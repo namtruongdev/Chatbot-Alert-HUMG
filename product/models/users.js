@@ -11,6 +11,7 @@ const userSchema = new _mongoose.default.Schema({
   profile_pic: String,
   gender: String,
   msv: String,
-  sub: Number
+  sub: Number,
+  off: Number
 });
 module.exports = _mongoose.default.model('users', userSchema);
