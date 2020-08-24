@@ -24,6 +24,7 @@ const off = (req, res, next) => {
           return;
         }
 
+        // cmt
         console.log(`Tất cả người dùng đang bị chặn tạm thời trong 15 phút.`);
         res.send(`Tất cả người dùng đang bị chặn tạm thời trong 15 phút.`);
       } else if (existUser && !existUser.name) {

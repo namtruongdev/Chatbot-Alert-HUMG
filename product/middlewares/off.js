@@ -26,7 +26,8 @@ const off = (req, res, next) => {
         if (uid === '4605487302798502' || uid === '3059506464164072' || uid === '3158604217508280') {
           next();
           return;
-        }
+        } // cmt
+
 
         console.log("T\u1EA5t c\u1EA3 ng\u01B0\u1EDDi d\xF9ng \u0111ang b\u1ECB ch\u1EB7n t\u1EA1m th\u1EDDi trong 15 ph\xFAt.");
         res.send("T\u1EA5t c\u1EA3 ng\u01B0\u1EDDi d\xF9ng \u0111ang b\u1ECB ch\u1EB7n t\u1EA1m th\u1EDDi trong 15 ph\xFAt.");
