@@ -52,6 +52,7 @@ class Job {
   async guiLichHoc() {
     const job = new cronJob(
       '0 0 5 * * *',
+      // '1 * * * * *',
       async function () {
         const allMemberSub = await DB.getSub();
         if (allMemberSub.length !== 0) {

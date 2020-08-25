@@ -8,7 +8,7 @@ import cron from './controllers/cronController';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
-// import confess from './api/confessHUMG';
+import confess from './api/confessHUMG';
 // import Wiki from './api/wikiAPI';
 
 const app = express();
@@ -32,13 +32,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 initWebRoute(app);
 (async () => {
   // await cron.test();
+  // const test = await confess.getStatus(
+  //   'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal'
+  // );
+  // console.log(test);
   cron.cronNews();
   cron.guiLichHoc();
   // cron.test();
 
-  // const test = await confess.getStatus(
-  //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
-  // );
   // await fbAPI.sendTemplateGeneric(
   //   4605487302798502,
   //   `Thấy em liền thả tym

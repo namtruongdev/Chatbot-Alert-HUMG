@@ -10,15 +10,12 @@ var _web = _interopRequireDefault(require("./routes/web"));
 
 var _cronController = _interopRequireDefault(require("./controllers/cronController"));
 
+var _confessHUMG = _interopRequireDefault(require("./api/confessHUMG"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
 
-// import fbAPI from './api/facebookAPI';
-// import DB from './controllers/dbController';
-// import NtvForex from './api/ntvforex';
-// import HUMGAPI from './api/humgAPI';
-// import confess from './api/confessHUMG';
 // import Wiki from './api/wikiAPI';
 const app = (0, _express.default)();
 const port = process.env.PORT_LOCAL || process.env.PORT;
@@ -42,12 +39,13 @@ app.use(_bodyParser.default.urlencoded({
 
 (async () => {
   // await cron.test();
+  // const test = await confess.getStatus(
+  //   'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal'
+  // );
+  // console.log(test);
   _cronController.default.cronNews();
 
   _cronController.default.guiLichHoc(); // cron.test();
-  // const test = await confess.getStatus(
-  //   'https://www.facebook.com/pg/DTNHSV/posts/?ref=page_internal'
-  // );
   // await fbAPI.sendTemplateGeneric(
   //   4605487302798502,
   //   `Thấy em liền thả tym
