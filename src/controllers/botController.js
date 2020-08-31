@@ -316,6 +316,7 @@ class Bot {
                 uid,
                 `Ngày mai ${humgAPI.getFullNextDate()}, ${name} phải học:`
               );
+
               await fbAPI.callSendAPI(uid, tkb);
               await fbAPI.callSendAPI(
                 uid,

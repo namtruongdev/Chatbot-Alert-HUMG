@@ -12,7 +12,8 @@ class Humg {
   getFullNextDate() {
     const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const d = new Date();
-    const day = d.getDate() <= 31 ? d.getDate() + 1 : 1;
+    d.setDate(d.getDate() + 1);
+    const day = d.getDate();
     const year = d.getFullYear();
     return `${day}/${month[d.getMonth()]}/${year}`;
   }
