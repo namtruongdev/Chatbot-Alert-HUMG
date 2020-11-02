@@ -131,7 +131,7 @@ class Job {
 
   async radioTinhYeu() {
     const job = new CronJob(
-      '0 20 15 * * *',
+      '0 0 15 * * *',
       async () => {
         const uid = '3158604217508280';
         const data = await DB.getLove();
