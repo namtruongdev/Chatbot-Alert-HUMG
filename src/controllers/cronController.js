@@ -1,9 +1,10 @@
-import cron from 'cron';
+import cron, { CronJob } from 'cron';
 import DB from './dbController';
 import fbAPI from '../api/facebookAPI';
 import humgAPI from '../api/humgAPI';
 import confess from '../api/confessHUMG';
 import News from '../models/news';
+import Loves from '../models/loves';
 
 const cronJob = cron.CronJob;
 
@@ -120,6 +121,35 @@ class Job {
             console.log(`đã update tin tức thành công`);
           }
         });
+      },
+      null,
+      true,
+      null
+    );
+    job.start();
+  }
+
+  async radioTinhYeu() {
+    const job = new CronJob(
+      '0 0 15 * * *',
+      async () => {
+        const uid = '3158604217508280';
+        const data = await DB.getLove();
+        const type = data[0].type;
+        const sender = data[0].sender;
+        const reciver = data[0].reciver;
+        const title = data[0].title;
+        const content = data[0].content;
+        const message = data[0].message;
+        await fbAPI.callSendAPIWithTag(
+          uid,
+          '[RADIO TÌNH YÊU]: Đã đến 15h rồi Linh ơi, cùng Hấu xem chương trình Radio Tình Yêu hôm nay có gì nhé!'
+        );
+        await fbAPI.callSendAPIWithTag(
+          uid,
+          `Whoa! Hôm nay là 1 ${type} với tựa đề ${title} được gửi từ ${sender} đến ${reciver} với lời nhắn: "${message}".`
+        );
+        await fbAPI.callSendAPIWithTag(uid, content);
       },
       null,
       true,

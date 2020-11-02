@@ -4,6 +4,8 @@ var _users = _interopRequireDefault(require("../models/users"));
 
 var _news = _interopRequireDefault(require("../models/news"));
 
+var _loves = _interopRequireDefault(require("../models/loves"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class DB {
@@ -79,6 +81,10 @@ class DB {
 
   async getNews() {
     return await _news.default.findOne({}).lean();
+  }
+
+  async getLove() {
+    return await _loves.default.findOne({}).lean();
   }
 
 }

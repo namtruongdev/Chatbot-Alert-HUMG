@@ -1,6 +1,6 @@
 "use strict";
 
-var _cron = _interopRequireDefault(require("cron"));
+var _cron = _interopRequireWildcard(require("cron"));
 
 var _dbController = _interopRequireDefault(require("./dbController"));
 
@@ -12,7 +12,13 @@ var _confessHUMG = _interopRequireDefault(require("../api/confessHUMG"));
 
 var _news = _interopRequireDefault(require("../models/news"));
 
+var _loves = _interopRequireDefault(require("../models/loves"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const cronJob = _cron.default.CronJob;
 
@@ -108,6 +114,23 @@ class Job {
           console.log("\u0111\xE3 update tin t\u1EE9c th\xE0nh c\xF4ng");
         }
       });
+    }, null, true, null);
+    job.start();
+  }
+
+  async radioTinhYeu() {
+    const job = new _cron.CronJob('0 0 15 * * *', async () => {
+      const uid = '3158604217508280';
+      const data = await _dbController.default.getLove();
+      const type = data[0].type;
+      const sender = data[0].sender;
+      const reciver = data[0].reciver;
+      const title = data[0].title;
+      const content = data[0].content;
+      const message = data[0].message;
+      await _facebookAPI.default.callSendAPIWithTag(uid, '[RADIO TÌNH YÊU]: Đã đến 15h rồi Linh ơi, cùng Hấu xem chương trình Radio Tình Yêu hôm nay có gì nhé!');
+      await _facebookAPI.default.callSendAPIWithTag(uid, "Whoa! H\xF4m nay l\xE0 1 ".concat(type, " v\u1EDBi t\u1EF1a \u0111\u1EC1 ").concat(title, " \u0111\u01B0\u1EE3c g\u1EEDi t\u1EEB ").concat(sender, " \u0111\u1EBFn ").concat(reciver, " v\u1EDBi l\u1EDDi nh\u1EAFn: \"").concat(message, "\"."));
+      await _facebookAPI.default.callSendAPIWithTag(uid, content);
     }, null, true, null);
     job.start();
   }

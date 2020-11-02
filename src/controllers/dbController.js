@@ -1,5 +1,6 @@
 import User from '../models/users';
 import News from '../models/news';
+import Loves from '../models/loves';
 
 class DB {
   constructor() {}
@@ -55,6 +56,10 @@ class DB {
   }
   async getNews() {
     return await News.findOne({}).lean();
+  }
+
+  async getLove() {
+    return await Loves.findOne({}).lean();
   }
 }
 

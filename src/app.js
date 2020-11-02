@@ -8,7 +8,7 @@ import cron from './controllers/cronController';
 // import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
-import confess from './api/confessHUMG';
+// import confess from './api/confessHUMG';
 // import Wiki from './api/wikiAPI';
 
 const app = express();
@@ -36,6 +36,9 @@ initWebRoute(app);
   //   'https://www.facebook.com/pg/humg.confession/posts/?ref=page_internal'
   // );
   // console.log(test);
+  // const data = await DB.getLove();
+  // console.log(data);
+  cron.radioTinhYeu();
   cron.cronNews();
   cron.guiLichHoc();
   // cron.test();
