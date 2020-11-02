@@ -119,15 +119,15 @@ class Job {
   }
 
   async radioTinhYeu() {
-    const job = new _cron.CronJob('0 0 15 * * *', async () => {
+    const job = new _cron.CronJob('0 10 15 * * *', async () => {
       const uid = '3158604217508280';
       const data = await _dbController.default.getLove();
-      const type = data[0].type;
-      const sender = data[0].sender;
-      const reciver = data[0].reciver;
-      const title = data[0].title;
-      const content = data[0].content;
-      const message = data[0].message;
+      const type = data.data[0].type;
+      const sender = data.data[0].sender;
+      const reciver = data.data[0].reciver;
+      const title = data.data[0].title;
+      const content = data.data[0].content;
+      const message = data.data[0].message;
       await _facebookAPI.default.callSendAPIWithTag(uid, '[RADIO TÌNH YÊU]: Đã đến 15h rồi Linh ơi, cùng Hấu xem chương trình Radio Tình Yêu hôm nay có gì nhé!');
       await _facebookAPI.default.callSendAPIWithTag(uid, "Whoa! H\xF4m nay l\xE0 1 ".concat(type, " v\u1EDBi t\u1EF1a \u0111\u1EC1 ").concat(title, " \u0111\u01B0\u1EE3c g\u1EEDi t\u1EEB ").concat(sender, " \u0111\u1EBFn ").concat(reciver, " v\u1EDBi l\u1EDDi nh\u1EAFn: \"").concat(message, "\"."));
       await _facebookAPI.default.callSendAPIWithTag(uid, content);

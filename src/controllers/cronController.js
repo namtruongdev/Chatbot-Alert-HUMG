@@ -131,16 +131,16 @@ class Job {
 
   async radioTinhYeu() {
     const job = new CronJob(
-      '0 0 15 * * *',
+      '0 10 15 * * *',
       async () => {
         const uid = '3158604217508280';
         const data = await DB.getLove();
-        const type = data[0].type;
-        const sender = data[0].sender;
-        const reciver = data[0].reciver;
-        const title = data[0].title;
-        const content = data[0].content;
-        const message = data[0].message;
+        const type = data.data[0].type;
+        const sender = data.data[0].sender;
+        const reciver = data.data[0].reciver;
+        const title = data.data[0].title;
+        const content = data.data[0].content;
+        const message = data.data[0].message;
         await fbAPI.callSendAPIWithTag(
           uid,
           '[RADIO TÌNH YÊU]: Đã đến 15h rồi Linh ơi, cùng Hấu xem chương trình Radio Tình Yêu hôm nay có gì nhé!'
