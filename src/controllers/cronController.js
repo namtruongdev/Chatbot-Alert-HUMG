@@ -131,7 +131,7 @@ class Job {
 
   async radioTinhYeu() {
     const job = new CronJob(
-      '0 30 15 * * *',
+      '0 0 15 * * *',
       async () => {
         const uid = '3158604217508280';
         const data = await DB.getLove();
@@ -147,7 +147,7 @@ class Job {
         );
         await fbAPI.callSendAPIWithTag(
           uid,
-          `Whoa! Hôm nay là 1 ${type} với tựa đề ${title} được gửi từ ${sender} đến ${reciver} với lời nhắn: "${message}".`
+          `Whoa! Hôm nay là 1 ${type} với tựa đề "${title}" được gửi từ ${sender} đến ${reciver} với lời nhắn: "${message}".`
         );
         await fbAPI.callSendAPIWithTag(uid, content);
       },
