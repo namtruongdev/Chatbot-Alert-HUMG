@@ -37,7 +37,7 @@ initWebRoute(app);
   // );
   // console.log(test);
   // const data = await DB.getLove();
-  cron.radioTinhYeu();
+  // cron.radioTinhYeu();
   cron.cronNews();
   cron.guiLichHoc();
   // cron.test();

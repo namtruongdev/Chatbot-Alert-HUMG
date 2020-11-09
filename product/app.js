@@ -47,8 +47,7 @@ app.use(_bodyParser.default.urlencoded({
   // );
   // console.log(test);
   // const data = await DB.getLove();
-  _cronController.default.radioTinhYeu();
-
+  // cron.radioTinhYeu();
   _cronController.default.cronNews();
 
   _cronController.default.guiLichHoc(); // cron.test();
