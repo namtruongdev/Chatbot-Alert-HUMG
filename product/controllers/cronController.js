@@ -119,7 +119,7 @@ class Job {
   }
 
   async radioTinhYeu() {
-    const job = new _cron.CronJob('0 0 15 * * *', async () => {
+    const job = new _cron.CronJob('0 30 15 * * *', async () => {
       const uid = '3158604217508280';
       const data = await _dbController.default.getLove();
       const type = data.data[0].type;
