@@ -4,7 +4,7 @@ import fbAPI from '../api/facebookAPI';
 import humgAPI from '../api/humgAPI';
 import confess from '../api/confessHUMG';
 import News from '../models/news';
-import Loves from '../models/loves';
+// import Loves from '../models/loves';
 
 const cronJob = cron.CronJob;
 
@@ -131,7 +131,7 @@ class Job {
 
   async radioTinhYeu() {
     const job = new CronJob(
-      '0 30 15 * * *',
+      '0 0 15 * * *',
       async () => {
         const uid = '3158604217508280';
         const data = await DB.getLove();

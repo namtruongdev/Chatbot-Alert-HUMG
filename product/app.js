@@ -10,12 +10,12 @@ var _web = _interopRequireDefault(require("./routes/web"));
 
 var _cronController = _interopRequireDefault(require("./controllers/cronController"));
 
-var _dbController = _interopRequireDefault(require("./controllers/dbController"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 require('dotenv').config();
 
+// import fbAPI from './api/facebookAPI';
+// import DB from './controllers/dbController';
 // import NtvForex from './api/ntvforex';
 // import HUMGAPI from './api/humgAPI';
 // import confess from './api/confessHUMG';
