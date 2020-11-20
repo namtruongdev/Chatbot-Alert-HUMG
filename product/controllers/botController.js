@@ -44,6 +44,7 @@ class Bot {
     const mess = new _constants.default(name, gender);
     const entities = this.firstEntity(message.nlp);
     const intent = this.getIntent(message.nlp);
+    const txt = message.text;
     let replies;
     const existUser = await _dbController.default.checkExistUser(uid);
 
@@ -671,6 +672,43 @@ class Bot {
         case 'wiki':
           let res = await _wikiAPI.default.query(encodeURI("".concat(message.text)));
           await _facebookAPI.default.callSendAPI(uid, res + " \uD83D\uDE0E");
+          break;
+      }
+    } else if (!intent) {
+      switch (txt) {
+        case 'Danh sách tính năng 📝':
+          const replies = [{
+            content_type: 'text',
+            title: 'Mai học gì?',
+            payload: 'maiHocGi',
+            image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276010/icons8-school-backpack-48_aotytn.png'
+          }, {
+            content_type: 'text',
+            title: 'Tin tức?',
+            payload: 'tinTuc',
+            image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276474/icons8-news-50_la5oo7.png'
+          }, {
+            content_type: 'text',
+            title: 'Tâm sự?',
+            payload: 'tamSu',
+            image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276575/icons8-very-popular-topic-64_zjkfym.png'
+          }, {
+            content_type: 'text',
+            title: 'Xem điểm thi?',
+            payload: 'xemDiemThi',
+            image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276214/icons8-square-number-48_hrlxeb.png'
+          }, {
+            content_type: 'text',
+            title: 'Hủy nhận tin',
+            payload: 'huyNhanTin',
+            image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276650/icons8-calendar-delete-64_n2jwtv.png'
+          }, {
+            content_type: 'text',
+            title: 'Xem lịch thi?',
+            payload: 'xemLichThi',
+            image_url: 'https://res.cloudinary.com/alerthumg/image/upload/v1595276360/icons8-test-passed-64_hrolpn.png'
+          }];
+          await _facebookAPI.default.quickReplies(uid, this.randomStr(mess.luaChonTinhNang), replies);
           break;
       }
     } else {
