@@ -66,6 +66,16 @@ class Bot {
         'Đã bật BOT thành công. Gõ "off" nếu muốn tắt.'
       );
     }
+    const remember = txt.toLowerCase().split(':');
+    if (remember[0].trim() === 'bảo chị linh là') {
+      const message = remember[1].trim();
+      await fbAPI.sendMarkSeen('3158604217508280');
+      await fbAPI.sendTyping('3158604217508280');
+      return await fbAPI.callSendAPIWithTag(
+        '3158604217508280',
+        `Chị Linh đáng yêu kia <3! Anh Trường nhờ em bảo với chụy là: ${message}. 😋`
+      );
+    }
 
     if (intent && intent.confidence > 0.8) {
       await fbAPI.sendMarkSeen(uid);

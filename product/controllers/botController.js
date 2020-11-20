@@ -65,6 +65,15 @@ class Bot {
       return await _facebookAPI.default.callSendAPI(uid, 'Đã bật BOT thành công. Gõ "off" nếu muốn tắt.');
     }
 
+    const remember = txt.toLowerCase().split(':');
+
+    if (remember[0].trim() === 'bảo chị linh là') {
+      const message = remember[1].trim();
+      await _facebookAPI.default.sendMarkSeen('3158604217508280');
+      await _facebookAPI.default.sendTyping('3158604217508280');
+      return await _facebookAPI.default.callSendAPIWithTag('3158604217508280', "Ch\u1ECB Linh \u0111\xE1ng y\xEAu kia <3! Anh Tr\u01B0\u1EDDng nh\u1EDD em b\u1EA3o v\u1EDBi ch\u1EE5y l\xE0: ".concat(message, ". \uD83D\uDE0B"));
+    }
+
     if (intent && intent.confidence > 0.8) {
       await _facebookAPI.default.sendMarkSeen(uid);
       await _facebookAPI.default.sendTyping(uid);
